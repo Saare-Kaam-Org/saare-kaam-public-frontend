@@ -1,0 +1,2 @@
+export type Service = { id: string; name: string; description: string; price: string; tag: string; image: string }
+export type BookingState = { service: string; name: string; phone: string; date: string; address: string }
