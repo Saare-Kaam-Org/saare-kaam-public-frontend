@@ -2,19 +2,141 @@
 @tailwind components;
 @tailwind utilities;
 
-:root { font-synthesis:none; text-rendering:optimizeLegibility; }
-html { scroll-behavior:auto; }
-body { margin:0; background:#f5f5ef; color:#142e27; font-family:'DM Sans',sans-serif; }
-* { box-sizing:border-box; }
-::selection { background:#d9ed9c; color:#142e27; }
-.serif-italic { font-family:'Playfair Display',serif; font-style:italic; font-weight:500; }
-.eyebrow { display:flex; align-items:center; gap:12px; color:#6d8069; font-size:10px; font-weight:700; letter-spacing:.22em; text-transform:uppercase; }
-.eyebrow > span { display:inline-block; width:30px; height:1px; background:currentColor; }
-.eyebrow-light { color:#d9ed9c; }
-.field-label { display:flex; flex-direction:column; gap:8px; color:#748178; font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
-.field-label input,.field-label select { width:100%; border:1px solid rgba(20,46,39,.15); border-radius:13px; background:white; padding:14px 15px; color:#142e27; font-size:14px; font-weight:500; letter-spacing:0; outline:none; text-transform:none; transition:border .2s,box-shadow .2s; }
-.field-label input:focus,.field-label select:focus { border-color:#234b3d; box-shadow:0 0 0 3px rgba(35,75,61,.1); }
-img { display:block; }
-@media (prefers-reduced-motion: reduce) {
-  *,*::before,*::after { scroll-behavior:auto!important; animation-duration:.01ms!important; animation-iteration-count:1!important; transition-duration:.01ms!important; }
+:root {
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background-color: #f8fafc;
+  color: #091424;
+  font-family: 'DM Sans', sans-serif;
+  overflow-x: hidden;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  background-color: #38bdf8;
+  color: #0b172c;
+}
+
+/* Explicit Ocean Blue Theme Utilities */
+.bg-ocean {
+  background-color: #0b172c !important;
+}
+
+.bg-ocean-card {
+  background-color: #11223e !important;
+}
+
+.bg-ocean-light {
+  background-color: #182f54 !important;
+}
+
+.text-ocean {
+  color: #0b172c !important;
+}
+
+.border-ocean {
+  border-color: #1e3a5f !important;
+}
+
+/* Crisp subtle scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5fa;
+}
+::-webkit-scrollbar-thumb {
+  background: #94a3b8;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #2563eb;
+}
+
+.serif-italic {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 500;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #2563eb;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.eyebrow > span {
+  display: inline-block;
+  width: 22px;
+  height: 2px;
+  background-color: currentColor;
+  border-radius: 9999px;
+}
+
+.eyebrow-light {
+  color: #38bdf8 !important;
+}
+
+.field-label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: #475569;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.field-label input,
+.field-label select,
+.field-label textarea {
+  width: 100%;
+  border: 1px solid rgba(15, 23, 42, 0.15);
+  border-radius: 12px;
+  background-color: #ffffff;
+  padding: 12px 14px;
+  color: #091424;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0;
+  outline: none;
+  text-transform: none;
+  transition: all 0.2s ease;
+}
+
+.field-label input:focus,
+.field-label select:focus,
+.field-label textarea:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+  background-color: #ffffff;
+}
+
+.glass-nav {
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+img {
+  display: block;
 }

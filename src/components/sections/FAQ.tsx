@@ -1,6 +1,55 @@
 import { useState } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
-import { Plus } from 'lucide-react'
+import { Plus, Minus } from 'lucide-react'
 import { faqs } from '../../data/content'
-import { Reveal } from '../motion/Reveal'
-export function FAQ(){const [active,setActive]=useState<number|null>(0);return <section className="bg-[#e9ebe2] px-6 py-24 md:px-10 md:py-32"><div className="mx-auto grid max-w-7xl gap-12 md:grid-cols-[.7fr_1.3fr]"><Reveal><p className="eyebrow"><span/> Good to know</p><h2 className="mt-5 font-display text-5xl font-semibold tracking-[-.06em] md:text-7xl">A few things<br/><span className="serif-italic text-moss">you might wonder.</span></h2></Reveal><div>{faqs.map((f,i)=><div key={f.q} className="border-b border-ink/15"><button onClick={()=>setActive(active===i?null:i)} className="flex w-full items-center justify-between gap-6 py-6 text-left font-display text-lg font-semibold md:text-xl">{f.q}<motion.span animate={{rotate:active===i?45:0}} className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-paper"><Plus size={18}/></motion.span></button><AnimatePresence initial={false}>{active===i&&<motion.div initial={{height:0,opacity:0}} animate={{height:'auto',opacity:1}} exit={{height:0,opacity:0}} transition={{duration:.3}} className="overflow-hidden"><p className="max-w-xl pb-7 pr-10 text-sm leading-7 text-ink/65">{f.a}</p></motion.div>}</AnimatePresence></div>)}</div></div></section>}
+
+export function FAQ() {
+  const [openIndex, setOpenIndex] = useState<number | null>(0)
+
+  return (
+    <section id="faqs" className="bg-slate-50 px-6 py-24 md:px-10 md:py-32">
+      <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.8fr_1.2fr]">
+        <div>
+          <p className="eyebrow"><span /> Got Questions?</p>
+          <h2 className="mt-4 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-5xl md:text-6xl">
+            Frequently Asked <br />
+            <span className="serif-italic text-blue-600 font-normal">Questions.</span>
+          </h2>
+          <p className="mt-4 text-sm text-slate-600 leading-relaxed max-w-sm">
+            Everything you need to know about Saare Kaam's doorstep laundry service, hygiene standards, and partner network.
+          </p>
+        </div>
+
+        {/* FAQ Accordion */}
+        <div className="divide-y divide-slate-200">
+          {faqs.map((f, i) => {
+            const isOpen = openIndex === i
+            return (
+              <div key={f.q} className="py-3">
+                <button
+                  type="button"
+                  onClick={() => setOpenIndex(isOpen ? null : i)}
+                  className="flex w-full items-center justify-between gap-4 py-4 text-left font-display text-base font-bold text-ink sm:text-lg transition hover:text-blue-600"
+                >
+                  <span>{f.q}</span>
+                  <span
+                    className={`grid h-8 w-8 shrink-0 place-items-center rounded-full transition duration-200 ${
+                      isOpen ? 'bg-blue-600 text-white shadow-sm' : 'bg-white text-slate-600 border border-slate-200 shadow-sm'
+                    }`}
+                  >
+                    {isOpen ? <Minus size={15} /> : <Plus size={15} />}
+                  </span>
+                </button>
+
+                {isOpen && (
+                  <div className="pb-5 pr-8 text-xs leading-relaxed text-slate-600">
+                    {f.a}
+                  </div>
+                )}
+              </div>
+            )
+          })}
+        </div>
+      </div>
+    </section>
+  )
+}

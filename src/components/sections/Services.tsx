@@ -1,16 +1,107 @@
-import { motion } from 'framer-motion'
-import { ArrowUpRight } from 'lucide-react'
+import { ArrowUpRight, Check } from 'lucide-react'
 import { services } from '../../data/content'
-import { Reveal } from '../motion/Reveal'
 
-export function Services({ onBook }: { onBook: (service: string) => void }) {
-  return <section id="services" className="bg-[#e9ebe2] px-6 py-24 md:px-10 md:py-32">
-    <div className="mx-auto max-w-7xl">
-      <Reveal><div className="flex flex-col justify-between gap-6 md:flex-row md:items-end"><div><p className="eyebrow"><span/> Thoughtful garment care</p><h2 className="mt-5 max-w-2xl font-display text-5xl font-semibold leading-[1.02] tracking-[-.06em] md:text-7xl">The right care for<br/><span className="serif-italic text-moss">every kind of wear.</span></h2></div><p className="max-w-xs text-sm leading-6 text-ink/65">From everyday essentials to your most-loved pieces, we make caring for clothes feel effortless.</p></div></Reveal>
-      <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">{services.map((s,i)=><motion.article key={s.id} initial={{opacity:0,y:55}} whileInView={{opacity:1,y:0}} viewport={{once:true,amount:.2}} transition={{delay:i*.1,duration:.7}} whileHover={{y:-10}} className="group overflow-hidden rounded-[1.6rem] bg-paper">
-        <div className="relative h-64 overflow-hidden"><motion.img whileHover={{scale:1.08}} transition={{duration:.7}} src={s.image} alt={s.name} className="h-full w-full object-cover"/><span className="absolute left-4 top-4 rounded-full bg-paper/90 px-3 py-2 text-[10px] font-bold uppercase tracking-widest backdrop-blur">{s.tag}</span></div>
-        <div className="p-5"><div className="flex items-start justify-between gap-3"><h3 className="font-display text-2xl font-semibold tracking-tight">{s.name}</h3><button aria-label={`Book ${s.name}`} onClick={()=>onBook(s.name)} className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-lime transition group-hover:rotate-45"><ArrowUpRight size={17}/></button></div><p className="mt-3 min-h-[48px] text-sm leading-6 text-ink/60">{s.description}</p><p className="mt-5 border-t border-ink/10 pt-4 text-sm font-bold">{s.price}</p></div>
-      </motion.article>)}</div>
-    </div>
-  </section>
+export function Services() {
+  return (
+    <section id="services" className="bg-paper px-6 py-24 md:px-10 md:py-32">
+      <div className="mx-auto max-w-7xl">
+        <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+          <div>
+            <p className="eyebrow"><span /> Thoughtful Garment Care</p>
+            <h2 className="mt-4 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-5xl md:text-6xl">
+              Specialised Services for <br />
+              <span className="serif-italic text-blue-600 font-normal">Every Piece in Your Wardrobe.</span>
+            </h2>
+          </div>
+          <p className="max-w-xs text-sm leading-relaxed text-ink-muted">
+            From daily office wear and casuals to heirloom sarees and designer blazers, our certified fabric technicians apply fabric-specific chemistry.
+          </p>
+        </div>
+
+        {/* Services Grid */}
+        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {services.map(s => (
+            <article
+              key={s.id}
+              className="group flex flex-col justify-between overflow-hidden rounded-[2.2rem] bg-white border border-slate-200/80 shadow-card transition-all duration-300 hover:-translate-y-1.5 hover:shadow-card-hover"
+            >
+              <div>
+                {/* Image banner */}
+                <div className="relative h-60 overflow-hidden">
+                  <img
+                    src={s.image}
+                    alt={s.name}
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+
+                  {/* Badges */}
+                  <div className="absolute left-4 top-4 flex gap-2">
+                    <span className="rounded-full bg-white/95 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-slate-800 backdrop-blur-md shadow-sm">
+                      {s.tag}
+                    </span>
+                    {s.badge && (
+                      <span className="rounded-full bg-cyan-400 px-2.5 py-1 text-[10px] font-extrabold uppercase tracking-widest text-ocean shadow-sm">
+                        {s.badge}
+                      </span>
+                    )}
+                  </div>
+
+                  <div className="absolute bottom-3 left-4 text-xs font-semibold text-white drop-shadow">
+                    {s.tagline}
+                  </div>
+                </div>
+
+                {/* Content */}
+                <div className="p-6">
+                  <div className="flex items-start justify-between gap-3">
+                    <h3 className="font-display text-2xl font-bold tracking-tight text-ink">
+                      {s.name}
+                    </h3>
+                    <a
+                      href="#pricing"
+                      className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-slate-100 text-slate-700 transition duration-200 group-hover:bg-blue-600 group-hover:text-white shadow-sm"
+                      title="View Price Details"
+                    >
+                      <ArrowUpRight size={18} />
+                    </a>
+                  </div>
+
+                  <p className="mt-3 text-xs leading-relaxed text-slate-600 min-h-[48px]">
+                    {s.description}
+                  </p>
+
+                  <div className="mt-5 space-y-2 border-t border-slate-100 pt-4 text-xs">
+                    {s.features.map(f => (
+                      <div key={f} className="flex items-center gap-2 text-slate-700">
+                        <Check size={14} className="text-blue-600 shrink-0 font-bold" />
+                        <span>{f}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Bottom Price Bar */}
+              <div className="flex items-center justify-between border-t border-slate-100 px-6 py-4 bg-slate-50/80">
+                <div className="flex items-baseline gap-1">
+                  <span className="text-xs font-medium text-slate-500">Starting</span>
+                  <span className="font-display text-xl font-extrabold text-blue-600">{s.price}</span>
+                  <span className="text-xs font-medium text-slate-500">{s.unit}</span>
+                </div>
+
+                <a
+                  href="#pricing"
+                  className="text-xs font-bold text-blue-600 transition hover:text-blue-800 underline underline-offset-2"
+                >
+                  View Rate Card →
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
 }

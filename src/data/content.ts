@@ -1,21 +1,239 @@
-import type { Service } from '../types'
+import type { Service, PricingItem, SubscriptionPlan, PartnerApplication } from '../types'
 
 export const services: Service[] = [
-  { id:'wash-fold', name:'Wash & fold', description:'Everyday essentials, washed gently and folded just right.', price:'From ₹79/kg', tag:'Everyday care', image:'https://images.unsplash.com/photo-1604335399105-a0c585fd81a1?auto=format&fit=crop&w=1000&q=85' },
-  { id:'dry-clean', name:'Dry cleaning', description:'Thoughtful care for the pieces that need a little extra.', price:'From ₹149/item', tag:'Premium care', image:'https://images.unsplash.com/photo-1598033129183-c4f50c736f10?auto=format&fit=crop&w=1000&q=85' },
-  { id:'steam-iron', name:'Steam ironing', description:'Crisp collars, smooth seams and a ready-to-wear finish.', price:'From ₹12/item', tag:'A polished finish', image:'https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?auto=format&fit=crop&w=1000&q=85' },
-  { id:'express', name:'Express laundry', description:'A faster turnaround for the days that cannot wait.', price:'From ₹129/kg', tag:'When time matters', image:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1000&q=85' }
+  {
+    id: 'wash-fold',
+    name: 'Wash & Fold',
+    tagline: 'Fresh everyday casuals, sorted & neatly folded',
+    description: 'Daily clothes washed in 100% individual sanitised drums with skin-friendly bio-enzymes, gently tumble dried, and folded with crisp precision.',
+    price: '₹79',
+    unit: '/ kg',
+    tag: 'Daily Wardrobe',
+    badge: 'Most Popular',
+    image: 'https://images.unsplash.com/photo-1545173168-9f1947eebb7f?auto=format&fit=crop&w=1000&q=80',
+    features: ['100% Individual Sanitised Drum', 'Zero Mixing Guarantee', 'European Eco-Enzyme Detergent', '24-48 Hours Return'],
+  },
+  {
+    id: 'dry-clean',
+    name: 'Artisanal Dry Cleaning',
+    tagline: 'Specialist care for couture, suits & ethnic wear',
+    description: 'Eco-solvent hydrocarbon cleaning for Italian wool suits, silk sarees, kurtas, wedding lehengas, and delicate embroidery without chemical stiffness.',
+    price: '₹149',
+    unit: '/ item',
+    tag: 'Formal & Ethnic',
+    badge: 'Expert Care',
+    image: 'https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?auto=format&fit=crop&w=1000&q=80',
+    features: ['German Hydrocarbon Solvent', 'Hand Stain-Spotting', 'Fabric драpe Restoration', 'Free Breathable Garment Cover'],
+  },
+  {
+    id: 'steam-press',
+    name: 'Executive Steam Ironing',
+    tagline: 'Razor-sharp creases on vacuum steam tables',
+    description: 'Professional high-pressure vacuum steam pressing that erases deep wrinkles, sharpens shirt collars and trouser pleats, and preserves fabric fibers.',
+    price: '₹15',
+    unit: '/ piece',
+    tag: 'Ready to Wear',
+    badge: 'Same-Day Avail.',
+    image: 'https://images.unsplash.com/photo-1489274495757-95c7c837b101?auto=format&fit=crop&w=1000&q=80',
+    features: ['Vacuum Heated Press Tables', 'No Scorching or Shininess', 'Hanger or Folded Packaging', 'Fast 12-24H Turnaround'],
+  },
+  {
+    id: 'express-rush',
+    name: '24H Express Rush',
+    tagline: 'Spotless clothes returned the very next day',
+    description: 'Got an urgent meeting, flight, or family function? Fast-track priority collection, processing, and return right to your door within 24 hours.',
+    price: '₹119',
+    unit: '/ kg',
+    tag: 'Speedy Care',
+    badge: 'Fast Turnaround',
+    image: 'https://images.unsplash.com/photo-1604335399105-a0c585fd81a1?auto=format&fit=crop&w=1000&q=80',
+    features: ['Guaranteed 24-Hour Return', 'Dedicated Express Valet', 'Priority Processing Drum', 'Live SMS & WhatsApp Alerts'],
+  },
+  {
+    id: 'bulky-bedding',
+    name: 'Blankets & Heavy Linens',
+    tagline: 'Deep thermal extraction for quilts, duvets & curtains',
+    description: 'Heavy winter blankets, razai, microfiber duvets, bedspreads, and blackout curtains washed with hypoallergenic anti-dust mite sanitization.',
+    price: '₹249',
+    unit: '/ piece',
+    tag: 'Home Linens',
+    image: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1000&q=80',
+    features: ['Deep Drum Antimicrobial Wash', 'Dust-Mite & Allergen Removal', 'Moisture-Barrier Protective Bags', '48 Hours Turnaround'],
+  },
+  {
+    id: 'shoe-spa',
+    name: 'Sneaker & Shoe Spa',
+    tagline: 'Revitalise your footwear from sole to lace',
+    description: 'Deep foam cleansing for sneakers, sports shoes, loafers, and formal leather. Includes midsole whitening, deodorisation, and germicidal UV sterilisation.',
+    price: '₹349',
+    unit: '/ pair',
+    tag: 'Footwear Care',
+    image: 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=1000&q=80',
+    features: ['Multi-Stage Foam Extraction', 'Sole De-Oxidation & Whitening', 'Germicidal UV Sterilisation', 'Water-Repellent Nano Coating'],
+  },
 ]
 
-export const steps = [
-  { number:'01', title:'We pick it up', text:'Choose a time that works. We collect your laundry right from your doorstep.', detail:'Doorstep collection, on your schedule.' },
-  { number:'02', title:'We care for it', text:'Your garments are sorted, cleaned and finished with care suited to each fabric.', detail:'Fabric-aware professional care.' },
-  { number:'03', title:'Fresh, back to you', text:'Everything comes back clean, neatly folded and ready for your wardrobe.', detail:'Fresh clothes, delivered home.' }
+export const pricingTiers: PricingItem[] = [
+  {
+    category: 'Daily Laundry (By Weight)',
+    items: [
+      { name: 'Wash, Dry & Fold (Everyday Wear)', price: '₹79 / kg', note: 'Min. 3 kg, includes sorting & eco detergent' },
+      { name: 'Wash & Steam Iron (Ready to Wear)', price: '₹109 / kg', note: 'Every garment steam pressed & folded' },
+      { name: '24H Express Wash & Fold', price: '₹119 / kg', note: 'Guaranteed next-day doorstep delivery' },
+    ],
+  },
+  {
+    category: 'Executive Steam Ironing',
+    items: [
+      { name: 'Formal Shirts & Tops', price: '₹15 / pc', note: 'Collar & cuff crisping on vacuum table' },
+      { name: 'Trousers, Chinos & Jeans', price: '₹18 / pc', note: 'Crisp razor-sharp center crease' },
+      { name: 'Kurtas & Tunics', price: '₹25 / pc', note: 'Steam infused wrinkle eradication' },
+      { name: 'Blazer / Formal Coat', price: '₹55 / pc', note: 'Shape retention shoulder pressing' },
+      { name: 'Saree (Cotton / Georgette / Silk)', price: '₹40 / pc', note: 'Full fall & pleat press' },
+    ],
+  },
+  {
+    category: 'Artisanal Dry Cleaning',
+    items: [
+      { name: '2-Piece Suit (Coat + Trouser)', price: '₹299 / set', note: 'Hydrocarbon solvent + free garment cover' },
+      { name: 'Designer / Silk Saree', price: '₹249 / pc', note: 'Zari safe, fabric lustre enhancement' },
+      { name: 'Heavy Bridal Lehenga (2-3 pc)', price: '₹599 / set', note: 'Hand-spotting on stones & embroidery' },
+      { name: 'Blazer / Winter Jacket', price: '₹189 / pc', note: 'Thermal deodorisation included' },
+      { name: 'Woolen Sweater / Cardigan', price: '₹149 / pc', note: 'Anti-pilling treatment included' },
+    ],
+  },
+  {
+    category: 'Home Bedding & Footwear',
+    items: [
+      { name: 'Double Bed Blanket / Razai', price: '₹249 / pc', note: 'Deep sanitised thermal wash' },
+      { name: 'Single Quilt / Comforter', price: '₹189 / pc', note: 'Fluff restoration & dust mite removal' },
+      { name: 'Bedsheet Set (1 Sheet + 2 Pillow Covers)', price: '₹99 / set', note: 'Washed, pressed & folded' },
+      { name: 'Sports Sneakers / Shoes (Deep Spa)', price: '₹349 / pair', note: 'Foam wash, sole whitening & UV sanitised' },
+    ],
+  },
+]
+
+export const subscriptionPlans: SubscriptionPlan[] = [
+  {
+    id: 'pay-per-wash',
+    name: 'Pay-As-You-Go',
+    price: '₹79',
+    period: '/ kg',
+    description: 'Zero commitments. Schedule whenever your laundry basket is full.',
+    features: [
+      '100% individual sanitised drum wash',
+      'Free doorstep pickup & delivery (orders > ₹299)',
+      'Neat origami fold or hanger packing',
+      '24-48 hours standard delivery',
+      'Dedicated care valet support',
+    ],
+    cta: 'Book A Free Pickup',
+  },
+  {
+    id: 'family-pass',
+    name: 'Smart Family Pass',
+    price: '₹799',
+    period: '/ month',
+    popular: true,
+    description: 'Put your home laundry on autopilot and save 25% on every load.',
+    features: [
+      '4 Free scheduled priority pickups per month',
+      'Exclusive member rate: flat ₹65 / kg',
+      'Flat 20% discount on all dry cleaning',
+      '2 Free 24H express rush upgrades',
+      'Free antimicrobial waterproof laundry bag',
+      'Priority customer concierge',
+    ],
+    cta: 'Get Family Pass',
+  },
+  {
+    id: 'executive-pass',
+    name: 'Executive Wardrobe Pass',
+    price: '₹1,499',
+    period: '/ month',
+    description: 'Designed for working executives & professionals who need daily crisp formals.',
+    features: [
+      'Unlimited doorstep pickup & deliveries',
+      '40 Steam Pressed formal garments included',
+      'Free 24H express turnaround on all orders',
+      '2 Free Suits / Sarees dry cleaned per month',
+      'Free suit covers & luxury wooden hangers',
+      'Dedicated priority care manager',
+    ],
+    cta: 'Get Executive Pass',
+  },
 ]
 
 export const faqs = [
-  { q:'How does doorstep laundry work?', a:'Choose your service, share your pickup address and preferred time, and our team collects your garments. We clean and finish them, then return them to your doorstep.' },
-  { q:'How long does a regular order take?', a:'Turnaround depends on the service and your location. Regular wash-and-fold orders typically take 48 hours; express options are available in supported areas.' },
-  { q:'Do you handle delicate garments?', a:'Yes. Select dry cleaning or add a care note when booking. Our team checks garment labels and separates items according to their care requirements.' },
-  { q:'Can I schedule a recurring pickup?', a:'Absolutely. You can arrange recurring weekly or monthly pickups. Subscription plans can be configured for your household needs.' }
+  {
+    q: 'What is Saare Kaam and how does it work?',
+    a: 'Saare Kaam is your one-stop doorstep garment care and laundry solution. You schedule a pickup online or via call/WhatsApp, our valet collects your clothes, our certified fabric technicians sort, wash in individual sanitized drums, and steam press them, and we deliver them crisp and fresh back to your door.',
+  },
+  {
+    q: 'Are my clothes ever washed with someone else’s laundry?',
+    a: 'Never. At Saare Kaam, we maintain a strict 100% Zero-Mixing Guarantee. Every single customer’s clothes are processed in their own dedicated, sanitised stainless steel drum with hospital-grade hygiene standards.',
+  },
+  {
+    q: 'How fast will my clothes be delivered?',
+    a: 'Standard wash, fold, and steam press orders are delivered within 24 to 48 hours. If you need clothes urgently, our 24H Express Rush delivers them back to your door the very next day.',
+  },
+  {
+    q: 'What detergents and chemicals do you use?',
+    a: 'We exclusively use biodegradable European eco-enzyme detergents, softeners, and gentle hydrocarbon dry cleaning solvents. We do not use harsh bleaches or cheap industrial caustic sodas that weaken cloth fibers.',
+  },
+  {
+    q: 'How does the Partner Programme work for local laundry owners?',
+    a: 'If you operate a laundry, dry cleaning workshop, or steam press shop, you can apply using the "Apply for Partnership" button. We inspect your machinery, connect you with guaranteed daily order volume, and handle all customer pickups and deliveries for you. You receive guaranteed weekly direct bank payouts.',
+  },
+]
+
+export const initialPartnerApplications: PartnerApplication[] = [
+  {
+    id: 'SK-APP-1001',
+    date: '2026-10-29 11:30 AM',
+    ownerName: 'Ramesh Patel',
+    phone: '+91 98220 44102',
+    email: 'ramesh.laundry@gmail.com',
+    businessName: 'Patel Steam Press & Dry Cleaners',
+    city: 'Mumbai',
+    area: 'Andheri West (Lokhandwala)',
+    pincode: '400053',
+    dailyCapacity: '150 - 250 kg/day',
+    equipment: ['Commercial Washers', 'Vacuum Steam Tables', 'Hydrocarbon Dry Clean'],
+    experienceYears: '8 years',
+    notes: 'Operating 2 shops with 3 steam tables and 2 industrial washers. Looking for daily batch orders.',
+    status: 'Verified',
+  },
+  {
+    id: 'SK-APP-1002',
+    date: '2026-10-30 03:15 PM',
+    ownerName: 'Mohan Lal Verma',
+    phone: '+91 98110 88291',
+    email: 'mohanlal.verma@yahoo.com',
+    businessName: 'Shree Krishna Fabric Spa',
+    city: 'Delhi NCR',
+    area: 'Malviya Nagar',
+    pincode: '110017',
+    dailyCapacity: '250 - 500 kg/day',
+    equipment: ['Commercial Washers', 'Vacuum Steam Tables', 'Steam Boilers'],
+    experienceYears: '12 years',
+    notes: 'Have 4 staff members and industrial boiler setup with backup generator.',
+    status: 'Pending',
+  },
+  {
+    id: 'SK-APP-1003',
+    date: '2026-10-31 09:45 AM',
+    ownerName: 'Suresh Kumar',
+    phone: '+91 97412 33019',
+    email: 'suresh.skcleaners@outlook.com',
+    businessName: 'Royal Express Laundry & Steam Care',
+    city: 'Bengaluru',
+    area: 'Indiranagar 100ft Road',
+    pincode: '560038',
+    dailyCapacity: '100 - 200 kg/day',
+    equipment: ['Commercial Washers', 'Vacuum Steam Tables', 'Shoe Spa Machine'],
+    experienceYears: '5 years',
+    notes: 'Interested in catering to local tech professionals and residential apartments.',
+    status: 'Contacted',
+  },
 ]
