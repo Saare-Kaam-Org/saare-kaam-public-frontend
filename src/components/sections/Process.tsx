@@ -6,6 +6,8 @@ import { Reveal } from '../motion/Reveal'
 import { PackageCheck, Shirt, Truck } from 'lucide-react'
 const icons=[Truck,Shirt,PackageCheck]
 
+gsap.registerPlugin(ScrollTrigger)
+
 export function Process() {
   const root=useRef<HTMLElement>(null)
   useLayoutEffect(()=>{const ctx=gsap.context(()=>{gsap.from('.process-line',{scaleX:0,transformOrigin:'left center',ease:'none',scrollTrigger:{trigger:root.current,start:'top 65%',end:'bottom 65%',scrub:true}})},root);return()=>ctx.revert()},[])

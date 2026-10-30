@@ -21,7 +21,7 @@ export function Hero({ onBook }: { onBook: () => void }) {
       <motion.div initial={{opacity:0,y:25}} animate={{opacity:1,y:0}} transition={{duration:.8}} className="mb-8 flex items-center gap-3 text-xs font-semibold uppercase tracking-[.22em] text-lime"><span className="h-px w-10 bg-lime"/> Laundry, elevated <Sparkles size={14}/></motion.div>
       <div className="max-w-3xl">
         <motion.h1 initial="hidden" animate="visible" variants={{hidden:{},visible:{transition:{staggerChildren:.13}}}} className="font-display text-[clamp(3.5rem,9vw,8.8rem)] font-semibold leading-[.91] tracking-[-.075em]">
-          {['Laundry day,','beautifully'].map((line,i)=><motion.span key={line} className="block" variants={{hidden:{opacity:0,y:70,rotate:2,filter:'blur(10px)'},visible:{opacity:1,y:0,rotate:0,filter:'blur(0px)',transition:{duration:1,ease:[.22,1,.36,1]}}}}>{line}</motion.span>)}
+          {['Laundry day,','beautifully'].map(line=><motion.span key={line} className="block" variants={{hidden:{opacity:0,y:70,rotate:2,filter:'blur(10px)'},visible:{opacity:1,y:0,rotate:0,filter:'blur(0px)',transition:{duration:1,ease:[.22,1,.36,1]}}}}>{line}</motion.span>)}
           <motion.span className="serif-italic block text-lime" initial={{opacity:0,y:70}} animate={{opacity:1,y:0}} transition={{delay:.55,duration:1,ease:[.22,1,.36,1]}}>handled.</motion.span>
         </motion.h1>
         <motion.p initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} transition={{delay:.9,duration:.8}} className="mt-8 max-w-md text-base leading-7 text-paper/75 md:text-lg">Professional garment care, without the extra work. We pick up, clean with care and bring everything back fresh.</motion.p>

@@ -131,7 +131,7 @@ export function ScrollFilm() {
           }
         })
 
-        chapters.forEach((chapter, index) => {
+        chapters.forEach((_, index) => {
           const video = videos[index]
           const duration = Number.isFinite(video.duration) && video.duration > 0 ? video.duration : 8
           const chapterStart = index * 0.78
