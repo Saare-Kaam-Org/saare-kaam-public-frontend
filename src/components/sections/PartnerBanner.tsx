@@ -1,74 +1,115 @@
-import { Handshake, ArrowUpRight, Building2, TrendingUp, DollarSign, ShieldCheck } from 'lucide-react'
+import {
+  Handshake,
+  ArrowUpRight,
+  Shirt,
+  Sparkles,
+} from 'lucide-react'
+import type { PartnerRole } from '../../modules/application/types'
 
 type Props = {
-  onOpenPartnerApply: () => void
+  onOpenPartnerApply: (role?: PartnerRole) => void
 }
+
+const partnerRoles = [
+  {
+    role: 'laundry_vendor' as PartnerRole,
+    title: 'Laundry Vendors',
+    subtitle: 'Fill idle washing machines & steam tables with guaranteed daily doorstep volume.',
+    icon: Shirt,
+    image: 'https://images.unsplash.com/photo-1582735689369-4fe89db7114c?auto=format&fit=crop&w=800&q=80',
+    perk: 'Weekly Direct Bank Payouts',
+  },
+  {
+    role: 'house_help' as PartnerRole,
+    title: 'House Helpers & Cooks',
+    subtitle: 'Dignified household work in verified apartments with transparent hourly / monthly earnings.',
+    icon: Sparkles,
+    image: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=800&q=80',
+    perk: 'Zero Brokerage / Safe Homes',
+  },
+]
 
 export function PartnerBanner({ onOpenPartnerApply }: Props) {
   return (
-    <section id="partner" className="bg-paper px-6 py-20 md:px-10 md:py-28">
+    <section id="partner" className="bg-paper px-6 py-20 md:px-10 md:py-28 scroll-mt-20">
       <div className="mx-auto max-w-7xl">
         <div className="rounded-[2.5rem] bg-gradient-to-br from-blue-50/80 via-white to-cyan-50/60 p-8 md:p-14 border border-blue-100 shadow-sm">
           <div className="max-w-3xl">
-            <p className="eyebrow"><span /> Saare Kaam Partner Network</p>
+            <p className="eyebrow"><span /> Saare Kaam Local Partner Network</p>
             <h2 className="mt-4 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-5xl md:text-6xl">
-              Empowering Local Laundry & <br />
-              <span className="serif-italic text-blue-600 font-normal">Dry Cleaning Workshops.</span>
+              Grow Your Local Trade. <br />
+              <span className="serif-italic text-blue-600 font-normal">Apply for Partnership.</span>
             </h2>
             <p className="mt-4 max-w-xl text-base leading-relaxed text-slate-600">
-              Do you own a laundry, dry cleaner, or steam pressing workshop? Partner with Saare Kaam. We handle 100% of the customer pickup, delivery valets, and digital marketing, bringing steady daily order batches directly to your facility.
+              Whether you run a local laundry shop or provide trusted domestic cleaning and cooking — Saare Kaam brings daily customers directly to your doorstep. Submit an application and our team will manually reach out to onboard you.
             </p>
           </div>
 
-          {/* 4 Benefits */}
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 text-xs">
-            <div className="rounded-2xl bg-white p-5 border border-slate-200/80 shadow-sm">
-              <span className="grid h-10 w-10 place-items-center rounded-xl bg-blue-50 text-blue-600 font-bold mb-3">
-                <TrendingUp size={20} />
-              </span>
-              <h4 className="font-display font-bold text-sm text-ocean">Guaranteed Daily Volume</h4>
-              <p className="mt-1 text-slate-500 leading-relaxed">Fill idle capacity 365 days a year with steady bulk batches.</p>
-            </div>
+          <div className="mt-10 grid gap-6 sm:grid-cols-2">
+            {partnerRoles.map(item => {
+              const Icon = item.icon
+              return (
+                <div
+                  key={item.role}
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => onOpenPartnerApply(item.role)}
+                  onKeyDown={e => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      onOpenPartnerApply(item.role)
+                    }
+                  }}
+                  className="group flex flex-col justify-between overflow-hidden rounded-3xl bg-white border border-slate-200 transition duration-300 hover:-translate-y-1 hover:border-blue-600 hover:shadow-card-hover cursor-pointer"
+                >
+                  <div className="relative h-44 overflow-hidden border-b border-slate-100">
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent" />
+                    <div className="absolute top-3 right-3">
+                      <span className="rounded-full bg-white/95 px-3 py-1 text-[10px] font-extrabold text-blue-700 uppercase tracking-wide border border-blue-100 shadow-sm">
+                        {item.perk}
+                      </span>
+                    </div>
+                    <div className="absolute bottom-3 left-4 flex items-center gap-2">
+                      <div className="grid h-9 w-9 place-items-center rounded-xl bg-blue-600 text-white shadow-sm">
+                        <Icon size={18} />
+                      </div>
+                      <span className="font-display text-base font-bold text-white drop-shadow">
+                        {item.title}
+                      </span>
+                    </div>
+                  </div>
 
-            <div className="rounded-2xl bg-white p-5 border border-slate-200/80 shadow-sm">
-              <span className="grid h-10 w-10 place-items-center rounded-xl bg-blue-50 text-blue-600 font-bold mb-3">
-                <Building2 size={20} />
-              </span>
-              <h4 className="font-display font-bold text-sm text-ocean">Zero Delivery Stress</h4>
-              <p className="mt-1 text-slate-500 leading-relaxed">Our valets collect from users and drop off at your workshop.</p>
-            </div>
+                  <div className="p-6">
+                    <p className="text-xs text-slate-600 leading-relaxed">
+                      {item.subtitle}
+                    </p>
 
-            <div className="rounded-2xl bg-white p-5 border border-slate-200/80 shadow-sm">
-              <span className="grid h-10 w-10 place-items-center rounded-xl bg-blue-50 text-blue-600 font-bold mb-3">
-                <DollarSign size={20} />
-              </span>
-              <h4 className="font-display font-bold text-sm text-ocean">Weekly Direct Payouts</h4>
-              <p className="mt-1 text-slate-500 leading-relaxed">Automated NEFT/UPI bank settlements every Monday.</p>
-            </div>
-
-            <div className="rounded-2xl bg-white p-5 border border-slate-200/80 shadow-sm">
-              <span className="grid h-10 w-10 place-items-center rounded-xl bg-blue-50 text-blue-600 font-bold mb-3">
-                <ShieldCheck size={20} />
-              </span>
-              <h4 className="font-display font-bold text-sm text-ocean">Free Chemical Subsidies</h4>
-              <p className="mt-1 text-slate-500 leading-relaxed">Bulk discounts on eco detergents, garment bags & spotting chemicals.</p>
-            </div>
+                    <div className="mt-5 flex items-center justify-between border-t border-slate-100 pt-3 text-xs font-bold text-blue-600">
+                      <span>Apply as {item.title}</span>
+                      <ArrowUpRight size={15} className="transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    </div>
+                  </div>
+                </div>
+              )
+            })}
           </div>
 
-          {/* Action Row */}
-          <div className="mt-10 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-slate-200/80 pt-8">
-            <div className="text-xs text-slate-600">
-              <strong className="text-ocean">Quick 2-minute application:</strong> Enter your workshop name, machinery, and daily capacity.
-            </div>
+          <div className="mt-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-t border-blue-100 pt-6">
+            <span className="serif-italic text-sm text-slate-700 font-semibold">
+              "Aapke Saare Kaam, humare saath aasaan."
+            </span>
 
             <button
               type="button"
-              onClick={onOpenPartnerApply}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 rounded-full bg-ocean px-8 py-4 text-xs font-bold text-white transition duration-200 hover:bg-ocean-light shadow-md active:scale-95 border border-slate-700/50"
+              onClick={() => onOpenPartnerApply()}
+              className="inline-flex items-center gap-2 rounded-full bg-ocean px-6 py-3 text-xs font-bold text-white transition hover:bg-ocean-light shadow-md"
             >
-              <Handshake size={16} className="text-cyan-400" />
-              <span>Apply for Partnership Now</span>
-              <ArrowUpRight size={15} className="text-cyan-300" />
+              <Handshake size={15} className="text-cyan-400" />
+              <span>Open Local Partnership Application</span>
             </button>
           </div>
         </div>

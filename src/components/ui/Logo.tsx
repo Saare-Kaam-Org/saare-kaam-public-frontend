@@ -4,6 +4,7 @@ type Props = {
   light?: boolean
   size?: 'sm' | 'md' | 'lg'
   showSubtitle?: boolean
+  subtitleText?: string
   className?: string
 }
 
@@ -11,6 +12,7 @@ export function Logo({
   light = false,
   size = 'md',
   showSubtitle = true,
+  subtitleText = 'Aapke Saare Kaam Aasaan',
   className = '',
 }: Props) {
   // Sizing tokens for the floating transparent logo icon
@@ -30,14 +32,14 @@ export function Logo({
 
   const subtitleSizeClass =
     size === 'sm'
-      ? 'text-[8.5px]'
+      ? 'text-[8px]'
       : size === 'lg'
-      ? 'text-[11px]'
-      : 'text-[9.5px]'
+      ? 'text-[10.5px]'
+      : 'text-[9px]'
 
   return (
     <div className={`inline-flex items-center gap-2.5 sm:gap-3 select-none group ${className}`}>
-      {/* 3D SK Logo Icon with 100% transparent PNG background (NO box, NO dark background) */}
+      {/* 3D SK Logo Icon with 100% transparent PNG background */}
       <div className="relative shrink-0 transition-transform duration-300 group-hover:scale-110">
         <img
           src="/saare-kaam-mark-clean.png"
@@ -47,7 +49,7 @@ export function Logo({
         />
       </div>
 
-      {/* Brand Name Typography written purely in code for 100% razor-sharp clarity */}
+      {/* Brand Name Typography */}
       <div className="flex flex-col leading-none">
         <div className={`font-display font-extrabold tracking-tight flex items-center gap-1 ${titleSizeClass}`}>
           <span className={light ? 'text-white' : 'text-[#0b172c]'}>Saare</span>
@@ -60,11 +62,11 @@ export function Logo({
 
         {showSubtitle && (
           <span
-            className={`font-sans font-bold uppercase tracking-[0.16em] mt-1 ${subtitleSizeClass} ${
-              light ? 'text-cyan-200/80' : 'text-slate-500'
+            className={`font-sans font-bold uppercase tracking-[0.14em] mt-1 ${subtitleSizeClass} ${
+              light ? 'text-cyan-200/90' : 'text-slate-500'
             }`}
           >
-            Smart Laundry Care
+            {subtitleText}
           </span>
         )}
       </div>
