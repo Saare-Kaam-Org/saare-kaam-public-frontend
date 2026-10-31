@@ -16,7 +16,7 @@ export function Footer({ onOpenPartnerApply, onNavigateToApplications }: Props) 
             <Logo light size="lg" />
             <h2 className="mt-6 max-w-md font-display text-2xl font-bold tracking-tight text-white sm:text-3xl">
               Aapke Saare Kaam, <br />
-              <span className="serif-italic text-cyan-400 font-normal">humare saath aasaan.</span>
+              <span className="serif-italic text-cyan-400 font-normal">humare saath mushkil.</span>
             </h2>
             <p className="mt-4 max-w-sm text-xs leading-relaxed text-slate-400">
               India's smart doorstep garment care solution. Individual sanitized drum cycles, skin-friendly detergents, and 24-48H delivery.
