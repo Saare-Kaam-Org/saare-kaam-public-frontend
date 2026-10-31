@@ -67,7 +67,7 @@ export function Hero({ onOpenPartnerApply }: Props) {
           {/* Catchy Hindi/English Tagline Headline */}
           <h1 className="font-display text-3xl font-extrabold leading-[1.08] tracking-tight sm:text-5xl md:text-6xl lg:text-7xl text-white">
             Aapke Saare Kaam, <br />
-            <span className="serif-italic text-cyan-400 font-normal">humare saath</span> mushkil.
+            <span className="serif-italic text-cyan-400 font-normal">humare saath</span> aasaan.
           </h1>
 
           <p className="mt-5 sm:mt-6 text-sm leading-relaxed text-slate-200 sm:text-base md:text-lg max-w-xl">
