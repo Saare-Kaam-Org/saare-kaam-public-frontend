@@ -116,7 +116,7 @@ export function Services({
     serviceCategories.find(c => c.id === currentTabId) || serviceCategories[0]
 
   return (
-    <section id="services" className="bg-paper px-6 py-20 md:px-10 md:py-28 scroll-mt-20">
+    <section id="services" className="bg-paper px-3 sm:px-6 md:px-10 py-14 md:py-28 scroll-mt-20 max-w-full overflow-hidden">
       <div className="mx-auto max-w-7xl">
         {/* Section Top Header */}
         <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
@@ -133,7 +133,7 @@ export function Services({
         </div>
 
         {/* 2 LOCAL COLOR-THEMED GRADIENT CARDS */}
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="mt-10 sm:mt-12 grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
           {(services.length > 0 ? services : serviceCategories).map((item: any, idx: number) => {
             const slug = item.slug || item.id
             const name = item.name
@@ -157,7 +157,7 @@ export function Services({
                     handleCardClick(slug, path)
                   }
                 }}
-                className={`group relative flex flex-col justify-between overflow-hidden rounded-[2rem] border-2 ${theme.borderColor} ${theme.gradientClass} p-6 text-left text-white transition-all duration-300 hover:-translate-y-2 ${theme.glowClass} cursor-pointer shadow-lg`}
+                className={`group relative flex flex-col justify-between overflow-hidden rounded-2xl sm:rounded-[2rem] border-2 ${theme.borderColor} ${theme.gradientClass} p-4 sm:p-6 text-left text-white transition-all duration-300 hover:-translate-y-2 ${theme.glowClass} cursor-pointer shadow-lg`}
               >
                 {/* Background Image with Gradient Overlay */}
                 <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -217,16 +217,16 @@ export function Services({
                   </p>
                 </div>
 
-                {/* Bottom Route Link Callout with Path Badge */}
+                {/* Bottom Route Link Callout with Category Tag */}
                 <div className="relative z-10 mt-6 border-t border-white/15 pt-3.5">
                   <div className="flex items-center justify-between text-xs font-bold text-white transition">
                     <span
-                      className={`font-mono text-[11px] font-semibold ${theme.pathBadgeBg} ${theme.pathBadgeText} border px-3 py-1 rounded-lg backdrop-blur-md`}
+                      className={`font-mono text-[10px] font-semibold ${theme.pathBadgeBg} ${theme.pathBadgeText} border px-3 py-1 rounded-lg backdrop-blur-md uppercase tracking-wider`}
                     >
-                      {path}
+                      {slug === 'laundry' ? 'Per-Kg Doorstep Valet' : 'Verified Hourly Care'}
                     </span>
                     <span className="inline-flex items-center gap-1.5 text-xs font-bold text-white/90 group-hover:text-white">
-                      <span>Explore Dedicated Page</span>
+                      <span>Explore Rates & Details</span>
                       <ArrowRight size={14} className="transition group-hover:translate-x-1" />
                     </span>
                   </div>
@@ -237,7 +237,7 @@ export function Services({
         </div>
 
         {/* Selected Service Detailed Showcase on Homepage */}
-        <div className="mt-12 overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-white via-slate-50/70 to-blue-50/40 border border-slate-200 shadow-card p-6 sm:p-10 md:p-12">
+        <div className="mt-8 sm:mt-12 overflow-hidden rounded-2xl sm:rounded-[2.5rem] bg-gradient-to-br from-white via-slate-50/70 to-blue-50/40 border border-slate-200 shadow-card p-3 sm:p-7 md:p-12">
           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8 border-b border-slate-200/80 pb-8">
             <div className="max-w-3xl">
               <div className="flex flex-wrap items-center gap-2 mb-3">
@@ -280,7 +280,7 @@ export function Services({
                 }}
                 className="inline-flex items-center justify-center gap-2 rounded-full bg-blue-600 px-6 py-3.5 text-xs font-bold text-white transition hover:bg-blue-700 shadow-md"
               >
-                <span>Open {cardThemeMap[currentCategory.id]?.path} Page</span>
+                <span>View {currentCategory.name} Rates & Details</span>
                 <ArrowRight size={14} />
               </button>
 
@@ -296,9 +296,9 @@ export function Services({
           </div>
 
           {/* Offerings Grid */}
-          <div className="mt-10">
-            <div className="flex items-center justify-between mb-6">
-              <h4 className="font-display text-xl font-bold text-ink">
+          <div className="mt-8 sm:mt-10">
+            <div className="flex items-center justify-between mb-5 sm:mb-6">
+              <h4 className="font-display text-lg sm:text-xl font-bold text-ink">
                 Featured Capabilities in {currentCategory.name}
               </h4>
               <button
@@ -306,19 +306,19 @@ export function Services({
                 onClick={() => onNavigate && onNavigate(cardThemeMap[currentCategory.id]?.path)}
                 className="font-mono text-xs font-bold text-blue-600 hover:underline flex items-center gap-1"
               >
-                <span>View Full {cardThemeMap[currentCategory.id]?.path} Page</span>
+                <span>View All {currentCategory.name} Options</span>
                 <ArrowRight size={13} />
               </button>
             </div>
 
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {currentCategory.offerings.map(offering => (
                 <article
                   key={offering.id}
-                  className="group flex flex-col justify-between overflow-hidden rounded-[2.2rem] bg-white border border-slate-200/80 shadow-card transition-all duration-300 hover:-translate-y-1.5 hover:shadow-card-hover"
+                  className="group flex flex-col justify-between overflow-hidden rounded-xl sm:rounded-[2.2rem] bg-white border border-slate-200/80 shadow-card transition-all duration-300 hover:-translate-y-1.5 hover:shadow-card-hover"
                 >
                   <div>
-                    <div className="relative h-56 overflow-hidden">
+                    <div className="relative h-52 sm:h-56 overflow-hidden">
                       <img
                         src={offering.image}
                         alt={offering.name}
@@ -327,8 +327,8 @@ export function Services({
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
 
-                      <div className="absolute left-4 top-4 flex gap-2">
-                        <span className="rounded-full bg-white/95 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-slate-800 backdrop-blur-md shadow-sm">
+                      <div className="absolute left-3 top-3 sm:left-4 sm:top-4 flex gap-1.5 sm:gap-2">
+                        <span className="rounded-full bg-white/95 px-2.5 sm:px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-slate-800 backdrop-blur-md shadow-sm">
                           {offering.tag}
                         </span>
                         {offering.badge && (
@@ -338,31 +338,31 @@ export function Services({
                         )}
                       </div>
 
-                      <div className="absolute bottom-3 left-4 text-xs font-semibold text-white drop-shadow">
+                      <div className="absolute bottom-2.5 left-3 sm:bottom-3 sm:left-4 text-xs font-semibold text-white drop-shadow">
                         {offering.tagline}
                       </div>
                     </div>
 
-                    <div className="p-6">
+                    <div className="p-4 sm:p-6">
                       <div className="flex items-start justify-between gap-3">
-                        <h5 className="font-display text-xl font-bold tracking-tight text-ink">
+                        <h5 className="font-display text-lg sm:text-xl font-bold tracking-tight text-ink">
                           {offering.name}
                         </h5>
                         <button
                           type="button"
                           onClick={() => setInspectOffering(offering)}
-                          className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-slate-100 text-slate-700 transition duration-200 group-hover:bg-blue-600 group-hover:text-white shadow-sm"
+                          className="grid h-8 w-8 sm:h-9 sm:w-9 shrink-0 place-items-center rounded-full bg-slate-100 text-slate-700 transition duration-200 group-hover:bg-blue-600 group-hover:text-white shadow-sm"
                           title="Inspect Details"
                         >
-                          <ArrowUpRight size={16} />
+                          <ArrowUpRight size={15} />
                         </button>
                       </div>
 
-                      <p className="mt-3 text-xs leading-relaxed text-slate-600 min-h-[44px]">
+                      <p className="mt-2 text-xs leading-relaxed text-slate-600 sm:min-h-[44px]">
                         {offering.description}
                       </p>
 
-                      <div className="mt-5 space-y-1.5 border-t border-slate-100 pt-4 text-xs">
+                      <div className="mt-4 sm:mt-5 space-y-1.5 border-t border-slate-100 pt-3 sm:pt-4 text-xs">
                         {offering.features.map(f => (
                           <div key={f} className="flex items-center gap-2 text-slate-700">
                             <Check size={13} className="text-blue-600 shrink-0 font-bold" />
@@ -373,15 +373,15 @@ export function Services({
                     </div>
                   </div>
 
-                  <div className="flex items-center justify-between border-t border-slate-100 px-6 py-4 bg-slate-50/80">
+                  <div className="flex items-center justify-between border-t border-slate-100 px-4 py-3 sm:px-6 sm:py-4 bg-slate-50/80">
                     <div className="flex items-baseline gap-1">
                       {offering.price && (
                         <>
-                          <span className="font-display text-lg font-extrabold text-blue-600">
+                          <span className="font-display text-base sm:text-lg font-extrabold text-blue-600">
                             {offering.price}
                           </span>
                           {offering.unit && (
-                            <span className="text-xs font-medium text-slate-500">
+                            <span className="text-[11px] sm:text-xs font-medium text-slate-500">
                               {offering.unit}
                             </span>
                           )}
@@ -406,16 +406,16 @@ export function Services({
         {/* Modal for Offering Inspection */}
         {inspectOffering && (
           <div
-            className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-ocean/85 p-4 backdrop-blur-sm"
+            className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-ocean/85 p-3 sm:p-4 backdrop-blur-sm"
             onClick={e => {
               if (e.target === e.currentTarget) setInspectOffering(null)
             }}
           >
-            <div className="relative my-8 w-full max-w-xl overflow-hidden rounded-[2.5rem] bg-white p-7 md:p-10 shadow-2xl border border-slate-200">
+            <div className="relative my-4 sm:my-8 w-full max-w-xl overflow-y-auto max-h-[90vh] rounded-3xl sm:rounded-[2.5rem] bg-white p-6 sm:p-8 md:p-10 shadow-2xl border border-slate-200">
               <button
                 type="button"
                 onClick={() => setInspectOffering(null)}
-                className="absolute right-6 top-6 grid h-9 w-9 place-items-center rounded-full bg-slate-100 text-slate-700 transition hover:bg-slate-200"
+                className="absolute right-4 top-4 sm:right-6 sm:top-6 z-10 grid h-9 w-9 place-items-center rounded-full bg-slate-100 text-slate-700 transition hover:bg-slate-200 shadow-sm"
               >
                 <X size={16} />
               </button>
@@ -482,7 +482,7 @@ export function Services({
                   }}
                   className="flex-1 rounded-full bg-blue-600 py-3.5 text-xs font-bold text-white hover:bg-blue-700 transition"
                 >
-                  Go to {cardThemeMap[currentCategory.id]?.path} Page
+                  View {currentCategory.name} Rates & Details
                 </button>
               </div>
             </div>

@@ -31,9 +31,9 @@ const partnerRoles = [
 
 export function PartnerBanner({ onOpenPartnerApply }: Props) {
   return (
-    <section id="partner" className="bg-paper px-6 py-20 md:px-10 md:py-28 scroll-mt-20">
+    <section id="partner" className="bg-paper px-4 sm:px-6 md:px-10 py-16 md:py-28 scroll-mt-20 max-w-full overflow-hidden">
       <div className="mx-auto max-w-7xl">
-        <div className="rounded-[2.5rem] bg-gradient-to-br from-blue-50/80 via-white to-cyan-50/60 p-8 md:p-14 border border-blue-100 shadow-sm">
+        <div className="rounded-3xl sm:rounded-[2.5rem] bg-gradient-to-br from-blue-50/80 via-white to-cyan-50/60 p-5 sm:p-8 md:p-14 border border-blue-100 shadow-sm">
           <div className="max-w-3xl">
             <p className="eyebrow"><span /> Saare Kaam Local Partner Network</p>
             <h2 className="mt-4 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-5xl md:text-6xl">
@@ -41,7 +41,7 @@ export function PartnerBanner({ onOpenPartnerApply }: Props) {
               <span className="serif-italic text-blue-600 font-normal">Apply for Partnership.</span>
             </h2>
             <p className="mt-4 max-w-xl text-base leading-relaxed text-slate-600">
-              Whether you run a local laundry shop or provide trusted domestic cleaning and cooking — Saare Kaam brings daily customers directly to your doorstep. Submit an application and our team will manually reach out to onboard you.
+              Whether you run a local laundry shop or provide trusted domestic cleaning and cooking — Saare Kaam brings daily customers directly to your doorstep. Submit an application and our team will contact you within 24 hours to onboard you.
             </p>
           </div>
 

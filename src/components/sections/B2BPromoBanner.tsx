@@ -4,7 +4,7 @@ export function B2BPromoBanner() {
   const b2bUrl = import.meta.env.VITE_B2B_URL || 'http://localhost:5555'
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-r from-[#160b24] via-[#2d0f3a] to-[#4c0535] px-6 py-16 md:px-10 text-white border-t border-purple-900/40">
+    <section className="relative max-w-full overflow-hidden bg-gradient-to-r from-[#160b24] via-[#2d0f3a] to-[#4c0535] px-4 sm:px-6 md:px-10 py-16 text-white border-t border-purple-900/40">
       {/* Background neon glow */}
       <div className="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full bg-pink-600/20 blur-[100px]" />
       <div className="pointer-events-none absolute -left-20 -bottom-20 h-72 w-72 rounded-full bg-purple-600/20 blur-[100px]" />
@@ -32,12 +32,12 @@ export function B2BPromoBanner() {
           </div>
         </div>
 
-        <div className="shrink-0">
+        <div className="w-full sm:w-auto shrink-0 flex justify-start sm:justify-end">
           <a
             href={b2bUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center gap-2.5 rounded-full bg-gradient-to-r from-pink-500 via-rose-500 to-purple-600 px-8 py-4 text-xs font-extrabold text-white shadow-[0_0_30px_rgba(236,72,153,0.35)] transition duration-200 hover:scale-105 hover:shadow-[0_0_40px_rgba(236,72,153,0.55)] whitespace-nowrap"
+            className="group w-full sm:w-auto justify-center inline-flex items-center gap-2.5 rounded-full bg-gradient-to-r from-pink-500 via-rose-500 to-purple-600 px-6 sm:px-8 py-3.5 sm:py-4 text-xs font-extrabold text-white shadow-[0_0_30px_rgba(236,72,153,0.35)] transition duration-200 hover:scale-[1.02] sm:hover:scale-105 hover:shadow-[0_0_40px_rgba(236,72,153,0.55)] text-center"
           >
             <span>Visit Saare Kaam B2B Software Portal</span>
             <ArrowUpRight size={16} className="transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
