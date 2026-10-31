@@ -178,18 +178,18 @@ export function PartnerApplyModal({ open, onClose, initialRole = null, onSuccess
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-start sm:items-center justify-center overflow-y-auto bg-ocean/85 p-4 backdrop-blur-md"
+      className="fixed inset-0 z-50 flex items-start sm:items-center justify-center overflow-y-auto bg-ocean/85 p-3 sm:p-4 backdrop-blur-md"
       onClick={e => {
         if (e.target === e.currentTarget) handleModalClose()
       }}
     >
-      <div className="relative my-8 w-full max-w-2xl overflow-hidden rounded-[2.5rem] bg-white shadow-2xl border border-slate-200">
+      <div className="relative my-4 sm:my-8 w-full max-w-2xl overflow-hidden rounded-3xl sm:rounded-[2.5rem] bg-white shadow-2xl border border-slate-200">
         {/* Close Button */}
         <button
           type="button"
           aria-label="Close modal"
           onClick={handleModalClose}
-          className="absolute right-6 top-6 z-10 grid h-10 w-10 place-items-center rounded-full bg-slate-100 text-slate-700 transition hover:bg-ocean hover:text-white"
+          className="absolute right-4 top-4 sm:right-6 sm:top-6 z-20 grid h-9 w-9 sm:h-10 sm:w-10 place-items-center rounded-full bg-slate-100 text-slate-700 transition hover:bg-ocean hover:text-white shadow-sm"
         >
           <X size={18} />
         </button>
@@ -215,7 +215,7 @@ export function PartnerApplyModal({ open, onClose, initialRole = null, onSuccess
             </h3>
 
             <p className="mx-auto mt-3 max-w-md text-sm text-slate-600 leading-relaxed">
-              Thank you, <strong>{data.ownerName}</strong>! Your application has been saved directly in our database. Our city operations team will manually review your profile and contact you within 24 hours via WhatsApp or call.
+              Thank you, <strong>{data.ownerName}</strong>! Your application has been received. Our city operations team will review your profile and contact you within 24 hours via WhatsApp or call.
             </p>
 
             <div className="mt-6 rounded-2xl bg-slate-50 p-5 text-left text-xs space-y-2 border border-slate-200">
@@ -256,8 +256,8 @@ export function PartnerApplyModal({ open, onClose, initialRole = null, onSuccess
           </div>
         ) : !selectedRole ? (
           /* 2. ROLE SELECTION SCREEN */
-          <div className="p-7 md:p-10 max-h-[85vh] overflow-y-auto">
-            <div>
+          <div className="p-5 sm:p-7 md:p-10 max-h-[88vh] overflow-y-auto">
+            <div className="pr-10">
               <div className="flex items-center gap-3 mb-2">
                 <Logo size="sm" />
                 <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-2.5 py-1 rounded-full border border-blue-200">
@@ -335,8 +335,8 @@ export function PartnerApplyModal({ open, onClose, initialRole = null, onSuccess
           </div>
         ) : (
           /* 3. PARTNER ONBOARDING FORM */
-          <div className="p-7 md:p-10 max-h-[85vh] overflow-y-auto">
-            <div className="flex items-center justify-between border-b border-slate-100 pb-4">
+          <div className="p-5 sm:p-7 md:p-10 max-h-[88vh] overflow-y-auto">
+            <div className="flex items-center justify-between border-b border-slate-100 pb-4 pr-12">
               <button
                 type="button"
                 onClick={handleReset}
@@ -631,7 +631,7 @@ export function PartnerApplyModal({ open, onClose, initialRole = null, onSuccess
                   </>
                 ) : (
                   <>
-                    <span>Submit Partner Application (We Will Manually Reach Out)</span>
+                    <span>Submit Partner Application</span>
                     <ArrowRight size={14} />
                   </>
                 )}
@@ -639,7 +639,7 @@ export function PartnerApplyModal({ open, onClose, initialRole = null, onSuccess
 
               <div className="mt-3 flex items-center justify-center gap-2 text-center text-[11px] text-slate-400">
                 <ShieldCheck size={13} className="text-emerald-500" />
-                <span>Direct submission to Saare Kaam PostgreSQL Database • Zero LocalStorage</span>
+                <span>Official Saare Kaam Partner Onboarding • 100% Verified Network</span>
               </div>
             </form>
           </div>

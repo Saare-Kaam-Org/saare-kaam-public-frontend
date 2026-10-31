@@ -69,11 +69,11 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-paper text-ink selection:bg-cyan-400 selection:text-ocean">
+    <div className="min-h-screen w-full max-w-full overflow-x-hidden bg-paper text-ink selection:bg-cyan-400 selection:text-ocean">
       {/* Top Floating Glass Navigation */}
       <Navbar onOpenPartnerApply={handleOpenPartnerModal} onNavigate={navigateTo} />
 
-      <main>
+      <main className="w-full max-w-full overflow-x-hidden">
         {currentPath === '/laundry' && (
           <LaundryPage
             onNavigate={navigateTo}

@@ -11,14 +11,27 @@
 
 html {
   scroll-behavior: smooth;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 body {
   margin: 0;
+  width: 100%;
+  max-width: 100%;
   background-color: #f8fafc;
   color: #091424;
   font-family: 'DM Sans', sans-serif;
   overflow-x: hidden;
+  position: relative;
+}
+
+#root {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  position: relative;
 }
 
 * {
@@ -139,4 +152,5 @@ body {
 
 img {
   display: block;
+  max-width: 100%;
 }

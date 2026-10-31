@@ -23,7 +23,7 @@ const steps = [
 
 export function HowItWorks() {
   return (
-    <section id="how-it-works" className="bg-ocean px-6 py-20 text-white md:px-10 md:py-28 relative overflow-hidden scroll-mt-20">
+    <section id="how-it-works" className="bg-ocean px-4 sm:px-6 md:px-10 py-16 md:py-28 text-white relative max-w-full overflow-hidden scroll-mt-20">
       {/* Background ambient water glow */}
       <div className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[500px] w-[500px] rounded-full bg-cyan-500/10 blur-3xl" />
       <div className="pointer-events-none absolute -left-20 bottom-0 h-[400px] w-[400px] rounded-full bg-blue-600/15 blur-3xl" />
@@ -42,11 +42,13 @@ export function HowItWorks() {
           </p>
         </div>
 
-        <div className="mt-14 grid gap-8 md:grid-cols-3">
-          {steps.map(step => (
+        <div className="mt-12 sm:mt-14 grid gap-6 md:gap-6 lg:gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          {steps.map((step, idx) => (
             <div
               key={step.number}
-              className="relative rounded-3xl bg-white/5 p-8 border border-white/10 backdrop-blur-sm transition duration-300 hover:bg-white/10"
+              className={`relative rounded-3xl bg-white/5 p-6 sm:p-7 lg:p-8 border border-white/10 backdrop-blur-sm transition duration-300 hover:bg-white/10 ${
+                idx === 2 ? 'sm:col-span-2 lg:col-span-1' : ''
+              }`}
             >
               <span className="font-mono text-3xl font-extrabold text-cyan-400">
                 {step.number}
