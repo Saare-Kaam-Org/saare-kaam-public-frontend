@@ -5,6 +5,7 @@ type Props = {
   size?: 'sm' | 'md' | 'lg'
   showSubtitle?: boolean
   subtitleText?: string
+  hideSubtitleOnMobile?: boolean
   className?: string
 }
 
@@ -13,6 +14,7 @@ export function Logo({
   size = 'md',
   showSubtitle = true,
   subtitleText = 'Aapke Saare Kaam Aasaan',
+  hideSubtitleOnMobile = false,
   className = '',
 }: Props) {
   // Sizing tokens for the floating transparent logo icon
@@ -63,8 +65,8 @@ export function Logo({
         {showSubtitle && (
           <span
             className={`font-sans font-bold uppercase tracking-[0.14em] mt-1 ${subtitleSizeClass} ${
-              light ? 'text-cyan-200/90' : 'text-slate-500'
-            }`}
+              hideSubtitleOnMobile ? 'hidden sm:block' : ''
+            } ${light ? 'text-cyan-200/90' : 'text-slate-500'}`}
           >
             {subtitleText}
           </span>

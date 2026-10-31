@@ -5,7 +5,7 @@ export function Subscriptions() {
   const { plans: filteredPlans } = usePlans('laundry')
 
   return (
-    <section id="subscriptions" className="bg-paper px-6 py-20 md:px-10 md:py-28 scroll-mt-20">
+    <section id="subscriptions" className="bg-paper px-3 sm:px-6 md:px-10 py-14 md:py-28 scroll-mt-20 max-w-full overflow-hidden">
       <div className="mx-auto max-w-7xl">
         <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
           <div>
@@ -29,12 +29,12 @@ export function Subscriptions() {
         </div>
 
         {/* Cards Grid */}
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-8 sm:mt-10 grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {filteredPlans.map(plan => {
             return (
               <div
                 key={plan.id}
-                className={`relative flex flex-col justify-between rounded-[2.2rem] p-7 transition-all duration-300 ${
+                className={`relative flex flex-col justify-between rounded-2xl sm:rounded-[2.2rem] p-4 sm:p-7 transition-all duration-300 ${
                   plan.popular
                     ? 'bg-ocean text-white shadow-lift ring-2 ring-cyan-400/40'
                     : 'bg-white text-ink border border-slate-200 shadow-card hover:shadow-card-hover'

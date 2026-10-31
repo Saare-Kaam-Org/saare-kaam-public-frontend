@@ -6,7 +6,7 @@ export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0)
 
   return (
-    <section id="faqs" className="bg-slate-50 px-6 py-20 md:px-10 md:py-28 scroll-mt-20">
+    <section id="faqs" className="bg-slate-50 px-4 sm:px-6 md:px-10 py-16 md:py-28 scroll-mt-20 max-w-full overflow-hidden">
       <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.8fr_1.2fr]">
         <div>
           <p className="eyebrow"><span /> Got Questions?</p>

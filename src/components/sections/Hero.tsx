@@ -49,7 +49,7 @@ export function Hero({ onOpenPartnerApply, onNavigate }: Props) {
   }
 
   return (
-    <section id="top" className="relative min-h-[90vh] overflow-hidden bg-[#071120] text-white flex items-center">
+    <section id="top" className="relative min-h-[90vh] w-full max-w-full overflow-hidden bg-[#071120] text-white flex items-center">
       {/* Background subtle water-cyan dot pattern */}
       <div
         className="pointer-events-none absolute inset-0 opacity-20"
@@ -77,31 +77,33 @@ export function Hero({ onOpenPartnerApply, onNavigate }: Props) {
       </div>
 
       {/* Main Container */}
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-5 sm:px-8 pb-16 pt-28 sm:pt-32 md:px-10 md:pt-36">
-        <div className="grid gap-12 lg:grid-cols-[1.2fr_0.8fr] items-center">
-          {/* Left Column */}
-          <div className="max-w-2xl">
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-3 sm:px-6 md:px-10 pb-16 pt-32 sm:pt-36 md:pt-40 min-w-0">
+        <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr] items-center">
+          {/* Left Column - Centered on Mobile just like B2B for a clean organized look */}
+          <div className="max-w-2xl w-full min-w-0 text-center lg:text-left mx-auto lg:mx-0 flex flex-col items-center lg:items-start">
             {/* Eyebrow badge showing live local counts from database */}
-            <div className="mb-5 sm:mb-6 flex flex-wrap items-center gap-2.5 text-xs font-bold uppercase tracking-[0.18em] text-cyan-400">
-              <span className="h-px w-7 bg-cyan-400" />
-              <span>Saare Kaam • Doorstep Local Services</span>
-              <span className="inline-flex items-center gap-1 rounded-full bg-cyan-500/20 px-2.5 py-0.5 text-[10px] font-extrabold text-cyan-300 border border-cyan-400/30">
+            <div className="mb-4 sm:mb-6 flex flex-wrap items-center justify-center lg:justify-start gap-2">
+              <div className="inline-flex items-center gap-2 rounded-full bg-cyan-500/10 border border-cyan-400/30 px-3.5 py-1 text-[10px] sm:text-xs font-bold uppercase tracking-wider text-cyan-300 shadow-sm">
+                <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 animate-pulse" />
+                <span className="break-words">Saare Kaam • Doorstep Local Services</span>
+              </div>
+              <span className="inline-flex items-center gap-1 rounded-full bg-cyan-500/20 px-2.5 py-1 text-[9px] sm:text-[10px] font-extrabold text-cyan-300 border border-cyan-400/30 whitespace-nowrap">
                 <Sparkles size={11} /> {activeServices.length} ESSENTIAL LOCAL SERVICES
               </span>
             </div>
 
             {/* Catchy Main Slogan */}
-            <h1 className="font-display text-3xl font-extrabold leading-[1.08] tracking-tight sm:text-5xl md:text-6xl lg:text-7xl text-white">
+            <h1 className="font-display text-2xl sm:text-4xl md:text-5xl lg:text-7xl font-extrabold leading-[1.15] tracking-tight text-white break-words text-center lg:text-left">
               Aapke Saare Kaam, <br />
               <span className="serif-italic text-cyan-400 font-normal">humare saath</span> aasaan.
             </h1>
 
-            <p className="mt-5 sm:mt-6 text-sm leading-relaxed text-slate-200 sm:text-base md:text-lg max-w-xl">
+            <p className="mt-3.5 sm:mt-5 text-xs sm:text-base md:text-lg leading-relaxed text-slate-200 max-w-xl mx-auto lg:mx-0 text-center lg:text-left break-words">
               From doorstep <strong className="text-cyan-300 font-semibold">Laundry Care</strong> (per-kg rates with weekly or multi-day pickup) to verified <strong className="text-cyan-300 font-semibold">House Help Service</strong> (transparent hourly rates for all cleaning & cooking).
             </p>
 
             {/* Dynamic Clickable Service Chips from Database */}
-            <div className="mt-6 flex flex-wrap gap-2">
+            <div className="mt-6 flex flex-wrap items-center justify-center lg:justify-start gap-2">
               {services.map((service, idx) => {
                 const Icon = iconRegistry[service.iconName] || Shirt
                 const isActive = service.status === 'ACTIVE'
@@ -127,9 +129,9 @@ export function Hero({ onOpenPartnerApply, onNavigate }: Props) {
             </div>
 
             {/* Quick Pincode Checker */}
-            <div className="mt-7 sm:mt-8 rounded-2xl bg-white/10 p-2 sm:p-2.5 backdrop-blur-md border border-white/20 shadow-2xl max-w-xl">
-              <form onSubmit={handlePincodeCheck} className="flex flex-col sm:flex-row gap-2">
-                <div className="relative flex-1">
+            <div className="mt-6 sm:mt-8 rounded-2xl bg-white/10 p-2 sm:p-2.5 backdrop-blur-md border border-white/20 shadow-2xl max-w-xl w-full min-w-0 mx-auto lg:mx-0">
+              <form onSubmit={handlePincodeCheck} className="flex flex-col sm:flex-row gap-2 w-full">
+                <div className="relative flex-1 min-w-0 w-full">
                   <input
                     type="text"
                     maxLength={6}
@@ -138,16 +140,16 @@ export function Hero({ onOpenPartnerApply, onNavigate }: Props) {
                       setPincode(e.target.value.replace(/\D/g, ''))
                       setPincodeStatus(null)
                     }}
-                    placeholder="Check doorstep services (Enter 6-digit postal pincode)"
-                    className="w-full rounded-xl bg-[#050c18] px-4 py-3 sm:py-3.5 pl-10 text-sm font-semibold text-white placeholder-slate-400 outline-none border border-slate-700 focus:border-cyan-400 transition"
+                    placeholder="Enter 6-digit pincode (e.g. 751017)"
+                    className="w-full rounded-xl bg-[#050c18] px-3.5 py-3 sm:py-3.5 pl-9 text-xs sm:text-sm font-semibold text-white placeholder-slate-400 outline-none border border-slate-700 focus:border-cyan-400 transition"
                   />
-                  <MapPin size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-cyan-400" />
+                  <MapPin size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-cyan-400" />
                 </div>
                 <button
                   type="submit"
-                  className="rounded-xl bg-cyan-400 px-5 sm:px-6 py-3 sm:py-3.5 text-xs font-bold text-[#0b172c] transition hover:bg-white active:scale-95 whitespace-nowrap shadow-sm"
+                  className="w-full sm:w-auto rounded-xl bg-cyan-400 px-5 sm:px-6 py-3 sm:py-3.5 text-xs font-bold text-[#0b172c] transition hover:bg-white active:scale-95 whitespace-nowrap shadow-sm text-center"
                 >
-                  Check Pincode
+                  Check Availability
                 </button>
               </form>
 
@@ -165,19 +167,19 @@ export function Hero({ onOpenPartnerApply, onNavigate }: Props) {
             </div>
 
             {/* CTAs */}
-            <div className="mt-7 sm:mt-8 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
+            <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row sm:items-center justify-center lg:justify-start gap-3 sm:gap-4 w-full">
               <button
                 type="button"
                 onClick={() => onOpenPartnerApply()}
-                className="inline-flex items-center justify-center gap-2.5 rounded-full bg-cyan-400 px-7 py-3.5 sm:py-4 text-xs font-extrabold text-[#0b172c] transition hover:bg-white active:scale-95 shadow-glow"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-cyan-400 px-6 py-3.5 sm:py-4 text-xs font-extrabold text-[#0b172c] transition hover:bg-white active:scale-95 shadow-glow"
               >
-                <Handshake size={16} />
+                <Handshake size={15} />
                 <span>Apply as Local Partner</span>
               </button>
 
               <a
                 href="#services"
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/30 bg-white/10 px-6 py-3.5 sm:py-4 text-xs font-bold text-white transition hover:bg-white/20 backdrop-blur-sm"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full border border-white/30 bg-white/10 px-6 py-3.5 sm:py-4 text-xs font-bold text-white transition hover:bg-white/20 backdrop-blur-sm text-center"
               >
                 <span>Browse Local Cards</span>
                 <ArrowRight size={14} className="text-cyan-400" />
@@ -186,10 +188,12 @@ export function Hero({ onOpenPartnerApply, onNavigate }: Props) {
           </div>
 
           {/* Right Column: Visual Local Service Interactive Showcase Cards */}
-          <div className="hidden lg:flex flex-col gap-3">
-            <span className="font-mono text-[10px] font-bold text-cyan-400 uppercase tracking-widest pl-1">
-              Explore Local Doorstep Services:
-            </span>
+          <div className="mt-8 lg:mt-0 grid sm:grid-cols-2 lg:flex lg:flex-col gap-3 min-w-0 w-full max-w-xl mx-auto lg:mx-0">
+            <div className="text-center lg:text-left sm:col-span-2 lg:col-span-1">
+              <span className="font-mono text-[10px] font-bold text-cyan-400 uppercase tracking-widest pl-1">
+                Explore Local Doorstep Services:
+              </span>
+            </div>
 
             {services.map((item, idx) => {
               return (
@@ -203,34 +207,34 @@ export function Hero({ onOpenPartnerApply, onNavigate }: Props) {
                       handleServiceClick(item.path)
                     }
                   }}
-                  className={`group flex items-center justify-between rounded-2xl bg-gradient-to-r ${item.gradientClass || 'from-[#0b172c] via-[#0e2748] to-[#0284c7]/40'} p-4 border ${item.borderColor || 'border-cyan-500/40 hover:border-cyan-400'} backdrop-blur-md transition-all duration-200 hover:scale-[1.02] cursor-pointer shadow-md`}
+                  className={`group flex items-center justify-between rounded-2xl bg-gradient-to-r ${item.gradientClass || 'from-[#0b172c] via-[#0e2748] to-[#0284c7]/40'} p-3.5 sm:p-4 border ${item.borderColor || 'border-cyan-500/40 hover:border-cyan-400'} backdrop-blur-md transition-all duration-200 hover:scale-[1.02] cursor-pointer shadow-md min-w-0`}
                 >
-                  <div className="flex items-center gap-3.5">
+                  <div className="flex items-center gap-3 min-w-0 flex-1">
                     <img
                       src={item.imageUrl}
                       alt={item.name}
-                      className="h-14 w-14 rounded-xl object-cover shrink-0 border border-white/20 shadow-sm"
+                      className="h-11 w-11 sm:h-14 sm:w-14 rounded-xl object-cover shrink-0 border border-white/20 shadow-sm"
                     />
-                    <div>
-                      <div className="flex items-center gap-2">
-                        <span className="font-display font-bold text-sm text-white group-hover:text-cyan-200 transition">
+                    <div className="min-w-0 flex-1">
+                      <div className="flex items-center gap-1.5 sm:gap-2">
+                        <span className="font-display font-bold text-xs sm:text-sm text-white group-hover:text-cyan-200 transition truncate">
                           {idx + 1}. {item.name}
                         </span>
-                        <span className="text-[9px] font-mono font-extrabold uppercase px-1.5 py-0.2 rounded-full border border-emerald-400/30 bg-emerald-500/20 text-emerald-300">
+                        <span className="text-[8px] sm:text-[9px] font-mono font-extrabold uppercase px-1.5 py-0.5 rounded-full border border-emerald-400/30 bg-emerald-500/20 text-emerald-300 shrink-0">
                           {item.status}
                         </span>
                       </div>
-                      <span className="text-[11px] text-slate-300 block line-clamp-1 mt-0.5">
-                        {item.badgeLabel || item.shortDesc}
+                      <span className="text-[10px] sm:text-[11px] text-slate-300 block line-clamp-1 mt-0.5">
+                        {item.slug === 'laundry'
+                          ? '100% individual drum wash • 24-48H return'
+                          : 'Cleaning, cooking & domestic help • Hourly rates'}
                       </span>
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-2 pr-2">
-                    <span className="font-mono text-[10px] font-bold border border-cyan-400/30 bg-cyan-500/20 text-cyan-200 px-2.5 py-1 rounded-full">
-                      {item.path}
-                    </span>
-                    <ArrowRight size={14} className="text-white transition group-hover:translate-x-1" />
+                  <div className="flex items-center gap-1 shrink-0 text-xs font-bold text-cyan-300 group-hover:text-white transition pl-1.5 sm:pl-2">
+                    <span className="hidden sm:inline">Explore</span>
+                    <ArrowRight size={13} className="transition group-hover:translate-x-1" />
                   </div>
                 </div>
               )
@@ -239,22 +243,22 @@ export function Hero({ onOpenPartnerApply, onNavigate }: Props) {
         </div>
 
         {/* Bottom Trust Highlights */}
-        <div className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 border-t border-slate-800/80 pt-6 text-[11px] sm:text-xs">
-          <div className="flex items-center gap-2 text-slate-200">
-            <ShieldCheck size={16} className="text-cyan-400 shrink-0" />
-            <span>100% Individual Sanitised Drum Wash</span>
+        <div className="mt-10 sm:mt-12 grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-4 border-t border-slate-800/80 pt-6 text-[10px] sm:text-xs">
+          <div className="flex items-center justify-center sm:justify-start gap-1.5 sm:gap-2 text-slate-200 min-w-0 text-center sm:text-left">
+            <ShieldCheck size={14} className="text-cyan-400 shrink-0" />
+            <span className="leading-tight">100% Individual Drum Wash</span>
           </div>
-          <div className="flex items-center gap-2 text-slate-200">
-            <Sparkles size={16} className="text-cyan-400 shrink-0" />
-            <span>Police-Verified Household Helpers</span>
+          <div className="flex items-center justify-center sm:justify-start gap-1.5 sm:gap-2 text-slate-200 min-w-0 text-center sm:text-left">
+            <Sparkles size={14} className="text-cyan-400 shrink-0" />
+            <span className="leading-tight">Police-Verified Helpers</span>
           </div>
-          <div className="flex items-center gap-2 text-slate-200">
-            <Clock size={16} className="text-cyan-400 shrink-0" />
-            <span>Transparent Hourly & Per-Kg Rates</span>
+          <div className="flex items-center justify-center sm:justify-start gap-1.5 sm:gap-2 text-slate-200 min-w-0 text-center sm:text-left">
+            <Clock size={14} className="text-cyan-400 shrink-0" />
+            <span className="leading-tight">Hourly & Per-Kg Rates</span>
           </div>
-          <div className="flex items-center gap-2 text-slate-200">
-            <ShieldCheck size={16} className="text-cyan-400 shrink-0" />
-            <span>Aapke Saare Kaam Aasaan</span>
+          <div className="flex items-center justify-center sm:justify-start gap-1.5 sm:gap-2 text-slate-200 min-w-0 text-center sm:text-left">
+            <ShieldCheck size={14} className="text-cyan-400 shrink-0" />
+            <span className="leading-tight">Aapke Saare Kaam Aasaan</span>
           </div>
         </div>
       </div>

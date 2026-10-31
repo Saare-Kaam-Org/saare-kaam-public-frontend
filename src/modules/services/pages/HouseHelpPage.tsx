@@ -122,7 +122,7 @@ export function HouseHelpPage({ onNavigate, onOpenPartnerApply }: Props) {
   return (
     <div className="bg-paper text-ink">
       {/* Top Hero */}
-      <section className="relative overflow-hidden bg-[#071c1b] text-white pt-28 pb-20 px-6 md:px-10">
+      <section className="relative overflow-hidden bg-[#071c1b] text-white pt-32 sm:pt-36 md:pt-40 pb-16 sm:pb-20 px-3.5 sm:px-8 md:px-10">
         <div
           className="pointer-events-none absolute inset-0 opacity-20"
           style={{
@@ -145,7 +145,7 @@ export function HouseHelpPage({ onNavigate, onOpenPartnerApply }: Props) {
 
         <div className="relative mx-auto max-w-7xl">
           {/* Breadcrumb */}
-          <div className="flex items-center gap-2 text-xs font-semibold text-slate-400 mb-6">
+          <div className="flex items-center justify-center md:justify-start gap-2 text-xs font-semibold text-slate-400 mb-6">
             <button
               type="button"
               onClick={() => onNavigate('/')}
@@ -157,27 +157,27 @@ export function HouseHelpPage({ onNavigate, onOpenPartnerApply }: Props) {
             <span className="text-teal-400 font-bold">House Help Service</span>
           </div>
 
-          <div className="max-w-2xl">
+          <div className="max-w-2xl text-center md:text-left mx-auto md:mx-0 flex flex-col items-center md:items-start">
             <div className="inline-flex items-center gap-2 rounded-full bg-teal-500/20 px-3.5 py-1 text-xs font-bold text-teal-300 border border-teal-400/30 mb-4">
               <Sparkles size={14} />
               <span>LIVE SERVICE • TRANSPARENT HOURLY RATES</span>
             </div>
 
-            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.1] text-white">
+            <h1 className="font-display text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.1] text-white text-center md:text-left">
               House Help Service <br />
               <span className="serif-italic text-teal-400 font-normal">All Cleaning & Cooking.</span>
             </h1>
 
-            <p className="serif-italic text-slate-300 text-lg mt-2 font-medium">
+            <p className="serif-italic text-slate-300 text-base sm:text-lg mt-2 font-medium text-center md:text-left">
               Aapke Saare Kaam, humare saath aasaan.
             </p>
 
-            <p className="mt-4 text-sm sm:text-base text-slate-200 leading-relaxed max-w-xl">
+            <p className="mt-4 text-xs sm:text-base text-slate-200 leading-relaxed max-w-xl text-center md:text-left mx-auto md:mx-0">
               From daily floor sweeping & mopping to kitchen dishwashing and fresh home-cooked meals. Billed purely at transparent hourly rates: 1 Hour, 3 Hours, or Full Day.
             </p>
 
             {/* CTAs */}
-            <div className="mt-8 flex flex-wrap items-center gap-3">
+            <div className="mt-8 flex flex-wrap items-center justify-center md:justify-start gap-3 w-full">
               <a
                 href="#hourly-rates"
                 className="rounded-full bg-teal-400 px-7 py-3.5 text-xs font-extrabold text-[#071c1b] hover:bg-white transition shadow-glow"
@@ -256,9 +256,9 @@ export function HouseHelpPage({ onNavigate, onOpenPartnerApply }: Props) {
       </section>
 
       {/* Hourly Pricing Cards with Real People Photos */}
-      <section id="hourly-rates" className="py-20 px-6 md:px-10">
+      <section id="hourly-rates" className="py-14 sm:py-20 px-3 sm:px-6 md:px-10">
         <div className="mx-auto max-w-7xl">
-          <div className="max-w-2xl mb-12">
+          <div className="max-w-2xl mb-10 sm:mb-12 text-center md:text-left mx-auto md:mx-0">
             <p className="eyebrow"><span /> Transparent Hourly Rates</p>
             <h2 className="mt-2 font-display text-3xl sm:text-4xl font-extrabold text-ink">
               Choose the Duration You Need
@@ -268,13 +268,15 @@ export function HouseHelpPage({ onNavigate, onOpenPartnerApply }: Props) {
             </p>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-3">
+          <div className="grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {hourlyTiers.map(tier => {
               const Icon = tier.icon
               return (
                 <div
                   key={tier.id}
-                  className={`rounded-3xl overflow-hidden flex flex-col justify-between border transition ${
+                  className={`rounded-2xl sm:rounded-3xl overflow-hidden flex flex-col justify-between border transition ${
+                    tier.id === 'fullday' ? 'sm:col-span-2 lg:col-span-1' : ''
+                  } ${
                     tier.popular
                       ? 'bg-[#071c1b] text-white border-teal-400 shadow-lift ring-2 ring-teal-400/30'
                       : 'bg-white text-ink border-slate-200 shadow-card hover:shadow-card-hover'
@@ -305,7 +307,7 @@ export function HouseHelpPage({ onNavigate, onOpenPartnerApply }: Props) {
                       </div>
                     </div>
 
-                    <div className="p-6">
+                    <div className="p-4 sm:p-6">
                       <div className="flex items-center gap-2 mb-2">
                         <div
                           className={`grid h-8 w-8 place-items-center rounded-lg ${
@@ -341,7 +343,7 @@ export function HouseHelpPage({ onNavigate, onOpenPartnerApply }: Props) {
                     </div>
                   </div>
 
-                  <div className="p-6 pt-0">
+                  <div className="p-4 sm:p-6 pt-0">
                     <a
                       href="#request-helper"
                       onClick={() => setSelectedPlan(`${tier.title} (${tier.price})`)}
@@ -362,15 +364,15 @@ export function HouseHelpPage({ onNavigate, onOpenPartnerApply }: Props) {
       </section>
 
       {/* Realistic Callback Request Form (Manual reach out) */}
-      <section id="request-helper" className="bg-slate-50 py-20 px-6 md:px-10 border-t border-slate-200">
-        <div className="mx-auto max-w-2xl rounded-3xl bg-white p-8 sm:p-12 border border-slate-200 shadow-card">
+      <section id="request-helper" className="bg-slate-50 py-16 sm:py-20 px-4 sm:px-6 md:px-10 border-t border-slate-200">
+        <div className="mx-auto max-w-2xl rounded-3xl bg-white p-5 sm:p-8 md:p-12 border border-slate-200 shadow-card">
           <div className="text-center max-w-xl mx-auto">
             <p className="eyebrow"><span /> Doorstep Service Callback</p>
             <h2 className="mt-2 font-display text-3xl font-extrabold text-ink">
               Request House Helper Callback
             </h2>
             <p className="mt-1 text-xs text-slate-600">
-              Submit your preferred hours and location. Our city operations team will manually reach out on WhatsApp / phone within 24 hours to match a verified helper.
+              Submit your preferred hours and location. Our city operations team will contact you on WhatsApp or call within 24 hours to confirm your booking.
             </p>
           </div>
 
@@ -379,7 +381,7 @@ export function HouseHelpPage({ onNavigate, onOpenPartnerApply }: Props) {
               <CheckCircle2 size={44} className="mx-auto text-teal-600 mb-2" />
               <h3 className="font-display text-xl font-bold text-ink">Service Callback Request Received!</h3>
               <p className="text-xs text-slate-600 mt-2">
-                Thank you, <strong>{name}</strong>! Our local city coordinator will manually call or WhatsApp you at <strong>{phone}</strong> to confirm timings and assign a verified domestic helper for <strong>{selectedPlan}</strong> in <strong>{cityArea}</strong>.
+                Thank you, <strong>{name}</strong>! Our local city coordinator will contact you via WhatsApp or call at <strong>{phone}</strong> to confirm timings and assign a verified domestic helper for <strong>{selectedPlan}</strong> in <strong>{cityArea}</strong>.
               </p>
               <div className="mt-4 pt-4 border-t border-teal-200/60 text-[11px] text-slate-600 space-y-1">
                 <p>Need urgent support? Email us directly at <a href="mailto:support@saarekaam.com" className="font-bold text-teal-700 underline">support@saarekaam.com</a></p>
@@ -438,7 +440,7 @@ export function HouseHelpPage({ onNavigate, onOpenPartnerApply }: Props) {
                 type="submit"
                 className="mt-4 flex w-full items-center justify-center gap-2 rounded-full bg-teal-600 py-4 text-sm font-bold text-white hover:bg-teal-700 transition shadow-md"
               >
-                <span>Submit Helper Request (We Will Manually Reach Out)</span>
+                <span>Submit Helper Request</span>
                 <ArrowRight size={15} />
               </button>
 

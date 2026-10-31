@@ -22,9 +22,9 @@ export function Footer({
   }
 
   return (
-    <footer className="bg-ocean px-6 pb-12 pt-20 text-white md:px-10 border-t border-slate-800">
+    <footer className="bg-ocean px-4 sm:px-6 md:px-10 pb-12 pt-16 sm:pt-20 text-white border-t border-slate-800 max-w-full overflow-hidden">
       <div className="mx-auto max-w-7xl">
-        <div className="grid gap-12 border-b border-slate-800 pb-16 lg:grid-cols-[1.4fr_0.9fr_0.8fr_1fr]">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.4fr_0.9fr_0.8fr_1fr] border-b border-slate-800 pb-16">
           {/* Brand Info & Main Theme */}
           <div>
             <Logo light size="lg" subtitleText="Aapke Saare Kaam Aasaan" />
