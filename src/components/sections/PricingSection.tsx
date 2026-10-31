@@ -1,30 +1,30 @@
 import { useState } from 'react'
-import { Check, ShieldCheck } from 'lucide-react'
+import { Check, ShieldCheck, Shirt, Sparkles } from 'lucide-react'
 import { pricingTiers } from '../../data/content'
 
 export function PricingSection() {
   const [activeCategory, setActiveCategory] = useState(0)
 
-  const current = pricingTiers[activeCategory]
+  const current = pricingTiers[activeCategory] || pricingTiers[0]
 
   return (
-    <section id="pricing" className="bg-slate-50 px-6 py-24 md:px-10 md:py-32">
+    <section id="pricing" className="bg-slate-50 px-6 py-20 md:px-10 md:py-28 scroll-mt-20">
       <div className="mx-auto max-w-7xl">
         <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
           <div>
-            <p className="eyebrow"><span /> Upfront & Transparent</p>
+            <p className="eyebrow"><span /> Upfront & Transparent Rates</p>
             <h2 className="mt-4 font-display text-3xl font-extrabold tracking-tight text-ink sm:text-5xl md:text-6xl">
               Honest Price Details. <br />
-              <span className="serif-italic text-blue-600 font-normal">No Hidden Fees.</span>
+              <span className="serif-italic text-blue-600 font-normal">Zero Hidden Fees.</span>
             </h2>
           </div>
-          <p className="max-w-xs text-sm leading-relaxed text-ink-muted">
-            Clear per-kg and per-piece rates. Clothes are weighed and inspected digitally with instant SMS receipts.
+          <p className="max-w-md text-sm leading-relaxed text-ink-muted">
+            From per-kg laundry wash & fold to transparent hourly house help — pay strictly for what you need with zero surprise surcharges.
           </p>
         </div>
 
         {/* Category Tabs */}
-        <div className="mt-12 flex gap-2 overflow-x-auto pb-2 scrollbar-none">
+        <div className="mt-12 flex flex-wrap gap-2 pb-2">
           {pricingTiers.map((tier, idx) => (
             <button
               key={tier.category}
@@ -54,7 +54,11 @@ export function PricingSection() {
             </div>
             <div className="flex items-center gap-2 text-xs font-semibold text-blue-700 bg-white px-3.5 py-1.5 rounded-full border border-blue-200 shadow-sm">
               <ShieldCheck size={15} />
-              <span>Free doorstep pickup on all orders over ₹299</span>
+              <span>
+                {current.category.includes('Laundry')
+                  ? 'Free doorstep pickup on all orders over ₹299'
+                  : '100% Police Verified & Transparent Rates'}
+              </span>
             </div>
           </div>
 
@@ -71,8 +75,8 @@ export function PricingSection() {
                   )}
                 </div>
 
-                <div className="text-right">
-                  <span className="font-display text-lg font-extrabold text-blue-600">
+                <div className="text-right sm:shrink-0">
+                  <span className="font-display text-base sm:text-lg font-extrabold text-blue-600">
                     {item.price}
                   </span>
                 </div>
@@ -83,16 +87,16 @@ export function PricingSection() {
           {/* Bottom Trust Inclusions */}
           <div className="border-t border-slate-800 bg-ocean p-6 text-white text-xs grid gap-4 sm:grid-cols-3">
             <div className="flex items-center gap-2">
-              <Check size={16} className="text-cyan-400 shrink-0" />
-              <span>100% Individual Sanitised Drum Wash</span>
+              <Shirt size={16} className="text-cyan-400 shrink-0" />
+              <span>100% Individual Sanitised Laundry Drum Wash</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Sparkles size={16} className="text-cyan-400 shrink-0" />
+              <span>Police-Verified Domestic Cleaners & Cooks</span>
             </div>
             <div className="flex items-center gap-2">
               <Check size={16} className="text-cyan-400 shrink-0" />
-              <span>Skin-Friendly Bio-Enzyme Detergents</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Check size={16} className="text-cyan-400 shrink-0" />
-              <span>Hanger or Origami Fold Packaging Included</span>
+              <span>Transparent Per-Kg & Hourly Rates</span>
             </div>
           </div>
         </div>
