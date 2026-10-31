@@ -7,34 +7,45 @@ import { Subscriptions } from './components/sections/Subscriptions'
 import { HowItWorks } from './components/sections/HowItWorks'
 import { PartnerBanner } from './components/sections/PartnerBanner'
 import { FAQ } from './components/sections/FAQ'
+import { B2BPromoBanner } from './components/sections/B2BPromoBanner'
 import { Footer } from './components/sections/Footer'
-import { PartnerApplyModal } from './components/PartnerApplyModal'
-import { AdminApplicationsPage } from './components/AdminApplicationsPage'
+
+// Modular Application Component
+import { PartnerApplyModal } from './modules/application/components/PartnerApplyModal'
+
+// Modular Local Service Pages
+import { LaundryPage } from './modules/services/pages/LaundryPage'
+import { HouseHelpPage } from './modules/services/pages/HouseHelpPage'
+
+import type { PartnerRole } from './modules/application/types'
+
+function resolvePath(pathname: string, hash: string): string {
+  const p = pathname.toLowerCase()
+  const h = hash.toLowerCase()
+
+  if (p.includes('house') || p.includes('help') || p.includes('maid') || h.includes('house') || h.includes('help') || h.includes('maid')) return '/house-help'
+  if (p.includes('laundry') || h.includes('laundry')) return '/laundry'
+
+  return '/'
+}
 
 export default function App() {
-  // Simple, robust client-side routing for /all-applications and homepage
   const [currentPath, setCurrentPath] = useState<string>(() => {
-    const path = window.location.pathname.toLowerCase()
-    const hash = window.location.hash.toLowerCase()
-    if (path.includes('all-applications') || hash.includes('all-applications')) {
-      return '/all-applications'
-    }
-    return '/'
+    return resolvePath(window.location.pathname, window.location.hash)
   })
 
   // Partner application modal state
   const [applyModalOpen, setApplyModalOpen] = useState(false)
+  const [modalInitialRole, setModalInitialRole] = useState<PartnerRole | null>(null)
 
-  // Listen to browser forward/back buttons and hash changes
+  // Active Service Tab for homepage
+  const [activeServiceTab, setActiveServiceTab] = useState<string>('laundry')
+
+  // Listen to browser navigation
   useEffect(() => {
     const handleLocationChange = () => {
-      const path = window.location.pathname.toLowerCase()
-      const hash = window.location.hash.toLowerCase()
-      if (path.includes('all-applications') || hash.includes('all-applications')) {
-        setCurrentPath('/all-applications')
-      } else {
-        setCurrentPath('/')
-      }
+      const resolved = resolvePath(window.location.pathname, window.location.hash)
+      setCurrentPath(resolved)
     }
 
     window.addEventListener('popstate', handleLocationChange)
@@ -46,60 +57,88 @@ export default function App() {
   }, [])
 
   const navigateTo = (path: string) => {
-    setCurrentPath(path)
-    if (path === '/all-applications') {
-      window.history.pushState({}, '', '/all-applications')
-      window.scrollTo({ top: 0, behavior: 'smooth' })
-    } else {
-      window.history.pushState({}, '', '/')
-      window.scrollTo({ top: 0, behavior: 'smooth' })
-    }
+    const resolved = resolvePath(path, '')
+    setCurrentPath(resolved)
+    window.history.pushState({}, '', resolved)
+    window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
-  // If navigating to /all-applications, render the Admin Tabular View with 1-click CSV download
-  if (currentPath === '/all-applications') {
-    return <AdminApplicationsPage onBackToHome={() => navigateTo('/')} />
+  const handleOpenPartnerModal = (role?: PartnerRole) => {
+    setModalInitialRole(role || null)
+    setApplyModalOpen(true)
   }
 
-  // Otherwise, render the clean, premium Saare Kaam landing page
   return (
-    <div className="min-h-screen bg-paper text-ink selection:bg-lime selection:text-forest">
+    <div className="min-h-screen bg-paper text-ink selection:bg-cyan-400 selection:text-ocean">
       {/* Top Floating Glass Navigation */}
-      <Navbar onOpenPartnerApply={() => setApplyModalOpen(true)} />
+      <Navbar onOpenPartnerApply={handleOpenPartnerModal} onNavigate={navigateTo} />
 
       <main>
-        {/* Hero Section */}
-        <Hero onOpenPartnerApply={() => setApplyModalOpen(true)} />
+        {currentPath === '/laundry' && (
+          <LaundryPage
+            onNavigate={navigateTo}
+            onOpenPartnerApply={handleOpenPartnerModal}
+          />
+        )}
 
-        {/* 6 Curated Garment Care Services */}
-        <Services />
+        {(currentPath === '/house-help' || currentPath === '/maid-service') && (
+          <HouseHelpPage
+            onNavigate={navigateTo}
+            onOpenPartnerApply={handleOpenPartnerModal}
+          />
+        )}
 
-        {/* Transparent Price Details Section */}
-        <PricingSection />
+        {currentPath === '/' && (
+          <>
+            {/* Top Interactive Hero with Dynamic Local Services */}
+            <Hero
+              onOpenPartnerApply={handleOpenPartnerModal}
+              onNavigate={navigateTo}
+            />
 
-        {/* Household Subscription Passes */}
-        <Subscriptions />
+            {/* 2 Color-Themed Local Service Cards */}
+            <Services
+              activeTab={activeServiceTab}
+              onTabChange={setActiveServiceTab}
+              onNavigate={navigateTo}
+              onOpenPartnerApply={handleOpenPartnerModal}
+            />
 
-        {/* 3-Step Simple Process */}
-        <HowItWorks />
+            {/* Transparent Rate Cards */}
+            <PricingSection />
 
-        {/* Dedicated Partner Recruitment Banner */}
-        <PartnerBanner onOpenPartnerApply={() => setApplyModalOpen(true)} />
+            {/* Weekly / Monthly Passes */}
+            <Subscriptions />
 
-        {/* Frequently Asked Questions */}
-        <FAQ />
+            {/* How Doorstep Logistics Work */}
+            <HowItWorks />
+
+            {/* Partner Network Banner */}
+            <PartnerBanner onOpenPartnerApply={handleOpenPartnerModal} />
+
+            {/* Frequently Asked Questions */}
+            <FAQ />
+
+            {/* Cross-Promotion: B2B Software Engineering Portal Banner */}
+            <B2BPromoBanner />
+          </>
+        )}
       </main>
 
-      {/* Comprehensive Footer with subtle link to /all-applications */}
+      {/* Footer */}
       <Footer
-        onOpenPartnerApply={() => setApplyModalOpen(true)}
-        onNavigateToApplications={() => navigateTo('/all-applications')}
+        onOpenPartnerApply={handleOpenPartnerModal}
+        onSelectServiceTab={serviceId => {
+          setActiveServiceTab(serviceId)
+          navigateTo('/')
+        }}
       />
 
-      {/* Apply for Partnership Modal */}
+      {/* Database-Driven Partner Application Modal */}
       <PartnerApplyModal
         open={applyModalOpen}
         onClose={() => setApplyModalOpen(false)}
+        initialRole={modalInitialRole}
       />
     </div>
   )

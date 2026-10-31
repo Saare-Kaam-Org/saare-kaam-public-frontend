@@ -6,7 +6,7 @@ export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0)
 
   return (
-    <section id="faqs" className="bg-slate-50 px-6 py-24 md:px-10 md:py-32">
+    <section id="faqs" className="bg-slate-50 px-6 py-20 md:px-10 md:py-28 scroll-mt-20">
       <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.8fr_1.2fr]">
         <div>
           <p className="eyebrow"><span /> Got Questions?</p>
@@ -15,8 +15,18 @@ export function FAQ() {
             <span className="serif-italic text-blue-600 font-normal">Questions.</span>
           </h2>
           <p className="mt-4 text-sm text-slate-600 leading-relaxed max-w-sm">
-            Everything you need to know about Saare Kaam's doorstep laundry service, hygiene standards, and partner network.
+            Everything you need to know about Saare Kaam local doorstep services: Laundry & Garment Care per-kg plans, House Help hourly rates, and local partner onboarding.
           </p>
+
+          <div className="mt-8 rounded-2xl bg-white p-5 border border-slate-200 text-xs text-slate-600">
+            <span className="font-bold text-slate-900 block mb-1">Our Core Commitment:</span>
+            <p className="serif-italic text-blue-600 text-sm font-semibold">
+              "Aapke Saare Kaam, humare saath aasaan."
+            </p>
+            <p className="mt-1 text-[11px] text-slate-500">
+              Reliable execution, certified hygiene, and direct transparent payouts.
+            </p>
+          </div>
         </div>
 
         {/* FAQ Accordion */}
@@ -33,7 +43,9 @@ export function FAQ() {
                   <span>{f.q}</span>
                   <span
                     className={`grid h-8 w-8 shrink-0 place-items-center rounded-full transition duration-200 ${
-                      isOpen ? 'bg-blue-600 text-white shadow-sm' : 'bg-white text-slate-600 border border-slate-200 shadow-sm'
+                      isOpen
+                        ? 'bg-blue-600 text-white shadow-sm'
+                        : 'bg-white text-slate-600 border border-slate-200 shadow-sm'
                     }`}
                   >
                     {isOpen ? <Minus size={15} /> : <Plus size={15} />}
@@ -41,7 +53,7 @@ export function FAQ() {
                 </button>
 
                 {isOpen && (
-                  <div className="pb-5 pr-8 text-xs leading-relaxed text-slate-600">
+                  <div className="pb-5 pr-8 text-xs sm:text-sm leading-relaxed text-slate-600">
                     {f.a}
                   </div>
                 )}
