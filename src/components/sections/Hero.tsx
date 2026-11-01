@@ -66,14 +66,14 @@ export function Hero({ onOpenPartnerApply, onNavigate }: Props) {
       {/* Hero Photography for Local Doorstep Valet Services */}
       <div className="absolute inset-y-0 right-0 w-full lg:left-[40%] lg:w-[60%] pointer-events-none overflow-hidden">
         <img
-          className="h-full w-full object-cover opacity-25 filter brightness-95 contrast-105"
+          className="h-full w-full object-cover object-[65%_center] opacity-55 brightness-90 contrast-110"
           src="https://images.unsplash.com/photo-1582735689369-4fe89db7114c?auto=format&fit=crop&w=2000&q=90"
           alt="Saare Kaam Local Services"
           loading="eager"
         />
         {/* Navy gradient overlays */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#071120] via-[#071120]/95 to-transparent lg:from-[#071120] lg:via-[#071120]/80 lg:to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#071120] via-transparent to-[#071120]/40" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#071120]/90 via-[#071120]/65 to-[#071120]/55 lg:from-[#071120] lg:via-[#071120]/75 lg:to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#071120]/90 via-transparent to-[#071120]/35" />
       </div>
 
       {/* Main Container */}
@@ -196,6 +196,21 @@ export function Hero({ onOpenPartnerApply, onNavigate }: Props) {
             </div>
 
             {services.map((item, idx) => {
+              const serviceKey = `${item.slug} ${item.name} ${item.path}`.toLowerCase()
+              const isHouseHelp = serviceKey.includes('house') || serviceKey.includes('help') || serviceKey.includes('maid')
+              const serviceTheme = isHouseHelp
+                ? {
+                    gradient: 'from-[#071c1b] via-[#0f3d36] to-[#059669]',
+                    border: 'border-teal-500/40 hover:border-teal-400',
+                    titleHover: 'group-hover:text-teal-200',
+                    explore: 'text-teal-300',
+                  }
+                : {
+                    gradient: 'from-[#1b1030] via-[#38205c] to-[#7e22ce]',
+                    border: 'border-purple-500/40 hover:border-purple-400',
+                    titleHover: 'group-hover:text-purple-200',
+                    explore: 'text-purple-300',
+                  }
               return (
                 <div
                   key={item.slug || item.id}
@@ -207,7 +222,7 @@ export function Hero({ onOpenPartnerApply, onNavigate }: Props) {
                       handleServiceClick(item.path)
                     }
                   }}
-                  className={`group flex items-center justify-between rounded-2xl bg-gradient-to-r ${item.gradientClass || 'from-[#0b172c] via-[#0e2748] to-[#0284c7]/40'} p-3.5 sm:p-4 border ${item.borderColor || 'border-cyan-500/40 hover:border-cyan-400'} backdrop-blur-md transition-all duration-200 hover:scale-[1.02] cursor-pointer shadow-md min-w-0`}
+                  className={`group flex items-center justify-between rounded-2xl bg-gradient-to-r ${serviceTheme.gradient} p-3.5 sm:p-4 border ${serviceTheme.border} backdrop-blur-md transition-all duration-200 hover:scale-[1.02] cursor-pointer shadow-md min-w-0`}
                 >
                   <div className="flex items-center gap-3 min-w-0 flex-1">
                     <img
@@ -217,7 +232,7 @@ export function Hero({ onOpenPartnerApply, onNavigate }: Props) {
                     />
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center gap-1.5 sm:gap-2">
-                        <span className="font-display font-bold text-xs sm:text-sm text-white group-hover:text-cyan-200 transition truncate">
+                        <span className={`font-display font-bold text-xs sm:text-sm text-white ${serviceTheme.titleHover} transition truncate`}>
                           {idx + 1}. {item.name}
                         </span>
                         <span className="text-[8px] sm:text-[9px] font-mono font-extrabold uppercase px-1.5 py-0.5 rounded-full border border-emerald-400/30 bg-emerald-500/20 text-emerald-300 shrink-0">
@@ -232,7 +247,7 @@ export function Hero({ onOpenPartnerApply, onNavigate }: Props) {
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-1 shrink-0 text-xs font-bold text-cyan-300 group-hover:text-white transition pl-1.5 sm:pl-2">
+                  <div className={`flex items-center gap-1 shrink-0 text-xs font-bold ${serviceTheme.explore} group-hover:text-white transition pl-1.5 sm:pl-2`}>
                     <span className="hidden sm:inline">Explore</span>
                     <ArrowRight size={13} className="transition group-hover:translate-x-1" />
                   </div>
