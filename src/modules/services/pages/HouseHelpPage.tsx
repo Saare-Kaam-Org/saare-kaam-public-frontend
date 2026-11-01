@@ -3,6 +3,7 @@ import {
   Sparkles,
   ShieldCheck,
   ArrowRight,
+  ArrowLeft,
   Handshake,
   CheckCircle2,
   Clock,
@@ -135,26 +136,25 @@ export function HouseHelpPage({ onNavigate, onOpenPartnerApply }: Props) {
         {/* Real Domestic Helper Photography in Hero */}
         <div className="absolute inset-y-0 right-0 w-full md:left-[45%] md:w-[55%] pointer-events-none overflow-hidden">
           <img
-            className="h-full w-full object-cover opacity-35 filter brightness-95"
+            className="h-full w-full object-cover object-[65%_center] opacity-55 brightness-90 contrast-110"
             src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=2000&q=90"
             alt="Real Domestic Helper Maintaining Clean Living Space"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#071c1b] via-[#071c1b]/90 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#071c1b] via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#071c1b]/90 via-[#071c1b]/65 to-[#071c1b]/55 md:from-[#071c1b] md:via-[#071c1b]/75 md:to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#071c1b]/90 via-transparent to-[#071c1b]/35" />
         </div>
 
         <div className="relative mx-auto max-w-7xl">
-          {/* Breadcrumb */}
-          <div className="flex items-center justify-center md:justify-start gap-2 text-xs font-semibold text-slate-400 mb-6">
+          {/* Return to the main home page */}
+          <div className="flex justify-center md:justify-start mb-6">
             <button
               type="button"
               onClick={() => onNavigate('/')}
-              className="hover:text-teal-400 transition"
+              className="inline-flex items-center gap-2 rounded-full border border-teal-400/40 bg-teal-400/10 px-4 py-2 text-xs font-bold text-teal-300 transition hover:bg-teal-400/20"
             >
-              Home
+              <ArrowLeft size={14} />
+              Back to home
             </button>
-            <span>/</span>
-            <span className="text-teal-400 font-bold">House Help Service</span>
           </div>
 
           <div className="max-w-2xl text-center md:text-left mx-auto md:mx-0 flex flex-col items-center md:items-start">

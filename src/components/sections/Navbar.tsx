@@ -168,13 +168,13 @@ export function Navbar({ onOpenPartnerApply, onNavigate }: Props) {
                   <button
                     type="button"
                     onClick={() => handleNavigateDirect('/laundry')}
-                    className="flex flex-col text-left rounded-2xl bg-cyan-50/70 border border-cyan-200/80 p-3 transition hover:bg-cyan-100/70"
+                    className="flex flex-col text-left rounded-2xl bg-purple-50/70 border border-purple-200/80 p-3 transition hover:bg-purple-100/70"
                   >
                     <div className="flex items-center justify-between mb-1">
-                      <div className="grid h-7 w-7 place-items-center rounded-lg bg-cyan-500 text-white shadow-sm">
+                      <div className="grid h-7 w-7 place-items-center rounded-lg bg-purple-500 text-white shadow-sm">
                         <Shirt size={14} />
                       </div>
-                      <span className="text-[9px] font-bold uppercase text-cyan-700 bg-white px-2 py-0.5 rounded-full border border-cyan-200">
+                      <span className="text-[9px] font-bold uppercase text-purple-800 bg-white px-2 py-0.5 rounded-full border border-purple-200">
                         Per-Kg
                       </span>
                     </div>
